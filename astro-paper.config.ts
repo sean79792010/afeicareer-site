@@ -2,14 +2,15 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
-    title: "AstroPaper",
-    description: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
+    url: "https://afeicareer.com/",
+    // TODO(待 Fei 定案): title / description / author / profile 為暫定佔位,等真實品牌文案
+    title: "Fei · 護理職涯",
+    description: "護理師職涯諮詢與經驗分享 — @afeicareer",
+    author: "Fei",
+    profile: "https://afeicareer.com/",
     ogImage: "default-og.jpg",
-    lang: "en",
-    timezone: "Asia/Bangkok",
+    lang: "zh-TW",
+    timezone: "Asia/Taipei",
     dir: "ltr",
   },
   posts: {
