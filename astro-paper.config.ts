@@ -3,11 +3,10 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://afeicareer.com/",
-    // TODO(待 Fei 定案): title / description / author / profile 為暫定佔位,等真實品牌文案
-    title: "Fei · 護理職涯",
-    description: "護理師職涯諮詢與經驗分享 — @afeicareer",
-    author: "Fei",
-    profile: "https://afeicareer.com/",
+    title: "霏霏｜護理職涯諮詢",
+    description: "護理職涯路上不孤單 — 霏霏的護理師職涯諮詢與經驗分享",
+    author: "霏霏",
+    profile: "https://www.instagram.com/afeicareer",
     ogImage: "default-og.jpg",
     lang: "zh-TW",
     timezone: "Asia/Taipei",
@@ -30,10 +29,10 @@ export default defineAstroPaperConfig({
     search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/satnaing/astro-paper" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
+    { name: "instagram", url: "https://www.instagram.com/afeicareer" },
+    { name: "threads",   url: "https://www.threads.net/@afeicareer" },
+    { name: "firstory",  url: "https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms", linkTitle: "職愛護相取暖會客室 Podcast" },
+    { name: "mail",      url: "mailto:contact@afeicareer.com" },
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },
