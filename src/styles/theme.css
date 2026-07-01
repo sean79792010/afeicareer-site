@@ -7,28 +7,29 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-noto-sans-tc), var(--font-google-sans-code), sans-serif;
+  --font-app: var(--font-raleway), var(--font-noto-sans-tc), sans-serif;
+  --font-heading: var(--font-lora), var(--font-noto-serif-tc), serif;
 }
 
-/* Light theme values — 暖莫蘭迪陶土色系(溫暖專業) */
+/* Light — Nature Distilled:暖象牙底 + 精緻陶土(ui-ux-pro-max) */
 :root,
 [data-theme="light"] {
-  --background: #faf8f4;
-  --foreground: #3a3532;
-  --accent: #9c6a5e;
+  --background: #fbf8f3;
+  --foreground: #3d3229;
+  --accent: #a0503a;
   --accent-foreground: #ffffff;
-  --muted: #e9e3da;
-  --muted-foreground: #857a70;
-  --border: #e4ddd3;
+  --muted: #efe8de;
+  --muted-foreground: #7d7266;
+  --border: #e7ddd0;
 }
 
-/* Dark theme values — 暖莫蘭迪深褐底 */
+/* Dark — 暖深咖啡底 + 亮陶土 */
 [data-theme="dark"] {
-  --background: #29251f;
-  --foreground: #ece5db;
-  --accent: #cf9a8b;
-  --accent-foreground: #29251f;
-  --muted: #403a32;
-  --muted-foreground: #b0a598;
-  --border: #52483c;
+  --background: #262019;
+  --foreground: #ede4d8;
+  --accent: #d98b6f;
+  --accent-foreground: #262019;
+  --muted: #3a322a;
+  --muted-foreground: #b3a697;
+  --border: #4a3f34;
 }

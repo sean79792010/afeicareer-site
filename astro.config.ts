@@ -59,12 +59,41 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   fonts: [
+    // 內文:Raleway(拉丁)+ Noto Sans TC(中文),清爽好讀
+    {
+      name: "Raleway",
+      cssVariable: "--font-raleway",
+      provider: fontProviders.google(),
+      fallbacks: ["sans-serif"],
+      weights: [300, 400, 500, 600, 700],
+      styles: ["normal"],
+      formats: ["woff2", "woff"],
+    },
     {
       name: "Noto Sans TC",
       cssVariable: "--font-noto-sans-tc",
       provider: fontProviders.google(),
       fallbacks: ["sans-serif"],
       weights: [400, 500, 700],
+      styles: ["normal"],
+      formats: ["woff2", "woff"],
+    },
+    // 標題:Lora(拉丁襯線)+ Noto Serif TC(中文襯線),優雅療癒
+    {
+      name: "Lora",
+      cssVariable: "--font-lora",
+      provider: fontProviders.google(),
+      fallbacks: ["serif"],
+      weights: [400, 500, 600, 700],
+      styles: ["normal", "italic"],
+      formats: ["woff2", "woff"],
+    },
+    {
+      name: "Noto Serif TC",
+      cssVariable: "--font-noto-serif-tc",
+      provider: fontProviders.google(),
+      fallbacks: ["serif"],
+      weights: [400, 500, 600, 700],
       styles: ["normal"],
       formats: ["woff2", "woff"],
     },
