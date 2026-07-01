@@ -7,28 +7,28 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --font-app: var(--font-noto-sans-tc), var(--font-google-sans-code), sans-serif;
 }
 
-/* Light theme values */
+/* Light theme values — 暖莫蘭迪陶土色系(溫暖專業) */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
+  --background: #faf8f4;
+  --foreground: #3a3532;
+  --accent: #9c6a5e;
   --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --muted: #e9e3da;
+  --muted-foreground: #857a70;
+  --border: #e4ddd3;
 }
 
-/* Dark theme values */
+/* Dark theme values — 暖莫蘭迪深褐底 */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #29251f;
+  --foreground: #ece5db;
+  --accent: #cf9a8b;
+  --accent-foreground: #29251f;
+  --muted: #403a32;
+  --muted-foreground: #b0a598;
+  --border: #52483c;
 }
