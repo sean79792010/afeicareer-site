@@ -1,0 +1,33 @@
+# Sveltia CMS 設定 — 霏霏發文後台
+# fields 對齊 src/content.config.ts 的 posts schema（title/pubDatetime/description 必填）
+backend:
+  name: github
+  repo: sean79792010/afeicareer-site
+  branch: main
+  base_url: https://sveltia-cms-auth.sean79792010.workers.dev
+
+# 內文貼圖上傳位置（Astro 把 public/ 直接掛在網站根目錄）
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+# 介面語言
+locale: zh-TW
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: src/content/posts
+    create: true
+    slug: "{{fields.slug}}"          # 用下方英文 slug 欄位當檔名/網址，避免中文標題產生亂碼網址
+    summary: "{{title}}"
+    sortable_fields: [pubDatetime, title]
+    fields:
+      - { name: title, label: 標題, widget: string }
+      - { name: slug, label: 網址代稱（英文小寫、用 - 連字）, widget: string, hint: "例：nursing-career-map，只用英文/數字/連字號，決定文章網址" }
+      - { name: pubDatetime, label: 發佈時間, widget: datetime, date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false }
+      - { name: description, label: 摘要（SEO 用，1-2 句）, widget: text }
+      - { name: tags, label: 標籤, widget: list, default: ["others"] }
+      - { name: draft, label: 草稿（打勾＝不公開）, widget: boolean, default: true }
+      - { name: featured, label: 精選（放首頁）, widget: boolean, default: false, required: false }
+      - { name: body, label: 內文, widget: markdown }
