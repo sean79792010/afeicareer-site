@@ -1,37 +1,25 @@
 ---
-title: "About"
-description: "A bit about me and this blog."
+title: "關於霏霏"
+description: "霏霏｜護理師暨職涯諮詢師。8 年臨床護理經驗，具職業衛生護理師與職涯諮詢師資歷，陪護理人員走轉職與職涯這條路。"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+我是霏霏，一位**護理師暨職涯諮詢師**。
 
-![Astro Paper](@/assets/images/astropaper-og.jpg)
+- 🩺 **8 年臨床護理經驗**
+- 🏭 **職業衛生護理師**（職護）
+- 🧭 **職涯諮詢師**
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+一路走來，我深刻體會護理職涯的辛苦與迷惘——輪班的疲憊、對未來的不確定、想轉職卻不知道有哪些路。所以我開了這個地方，把這些年累積的臨床、職護與職涯諮詢經驗整理出來，希望讓正在猶豫的護理夥伴知道：**護理職涯路上不孤單。**
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+這裡會分享：
 
-## Features
+- 護理師的多元出路與轉職地圖（正常班／不輪班職缺）
+- 職業衛生護理師、學校護理師、個管師等職涯路徑
+- 履歷、面試與職涯規劃的實務經驗
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+## 一起聊聊
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
-
-and so much more.
-
-## Show your support
-
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
-
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+- 📸 Instagram：[@afeicareer](https://www.instagram.com/afeicareer)
+- 🧵 Threads：[@afeicareer](https://www.threads.net/@afeicareer)
+- 🎙️ Podcast：[職愛護相取暖會客室](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
+- ✉️ Email：[contact@afeicareer.com](mailto:contact@afeicareer.com)

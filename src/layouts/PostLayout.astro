@@ -1,36 +1,66 @@
 ---
 import Layout from "./Layout.astro";
+import {
+  SITE_URL,
+  blogPostingSchema,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLdGraph,
+  type FaqItem,
+} from "@/utils/structuredData";
 import config from "@/config";
 
 type Props = {
   title?: string;
+  headline?: string;
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  faq?: FaqItem[];
 };
 
 const { site } = config;
 
-const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
-  Astro.props;
+const {
+  title,
+  headline,
+  description,
+  ogImage,
+  canonicalURL,
+  pubDatetime,
+  modDatetime,
+  faq,
+} = Astro.props;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: title ?? site.title,
-  image: ogImage,
-  ...(pubDatetime && { datePublished: pubDatetime.toISOString() }),
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: site.author,
-      ...(site.profile && { url: site.profile }),
-    },
-  ],
-};
+// 文章實際 URL（優先用 canonical，否則由當前路徑推）
+const postUrl =
+  canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
+const postHeadline = headline ?? title ?? site.title;
+
+// BlogPosting + BreadcrumbList (+ FAQPage 若有 faq) 合成單一 @graph
+const nodes: object[] = [
+  blogPostingSchema({
+    headline: postHeadline,
+    description,
+    url: postUrl,
+    image: ogImage,
+    pubDatetime,
+    modDatetime,
+  }),
+  breadcrumbSchema([
+    { name: "首頁", url: `${SITE_URL}/` },
+    { name: "文章", url: `${SITE_URL}/posts/` },
+    { name: postHeadline, url: postUrl },
+  ]),
+];
+
+if (faq && faq.length) {
+  nodes.push(faqSchema(faq));
+}
+
+const structuredData = jsonLdGraph(...nodes);
 ---
 
 <Layout {title} {description} {ogImage} {canonicalURL}>
@@ -58,7 +88,7 @@ const structuredData = {
     <script
       type="application/ld+json"
       is:inline
-      set:html={JSON.stringify(structuredData)}
+      set:html={structuredData}
     />
   </Fragment>
 

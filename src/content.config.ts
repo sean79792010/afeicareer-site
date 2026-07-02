@@ -21,6 +21,10 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
+      // 常見問答（AEO）：填了會自動輸出 FAQPage 結構化資料 + 文末 FAQ 區塊
+      faq: z
+        .array(z.object({ question: z.string(), answer: z.string() }))
+        .optional(),
     }),
 });
 

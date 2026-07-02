@@ -31,3 +31,13 @@ collections:
       - { name: draft, label: 草稿（打勾＝不公開）, widget: boolean, default: true }
       - { name: featured, label: 精選（放首頁）, widget: boolean, default: false, required: false }
       - { name: body, label: 內文, widget: markdown }
+      - name: faq
+        label: 常見問答（FAQ，可留空）
+        label_singular: 問答
+        hint: 填了會自動在文末產生「常見問題」區塊，並輸出 SEO/AI 搜尋用的 FAQ 結構化資料
+        widget: list
+        required: false
+        summary: "{{fields.question}}"
+        fields:
+          - { name: question, label: 問題, widget: string }
+          - { name: answer, label: 回答, widget: text }

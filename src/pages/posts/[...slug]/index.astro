@@ -69,6 +69,7 @@ const {
   timezone,
   tags,
   hideEditPost,
+  faq,
 } = post.data;
 
 const { Content } = await render(post);
@@ -96,11 +97,13 @@ const ogImage = ogImageUrl
 
 <PostLayout
   title={`${title} | ${config.site.title}`}
+  headline={title}
   description={description}
   ogImage={ogImage}
   canonicalURL={canonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
+  faq={faq}
 >
   <Header />
 
@@ -142,6 +145,26 @@ const ogImage = ogImageUrl
     >
       <Content />
     </article>
+
+    {
+      faq && faq.length > 0 && (
+        <section
+          id="faq"
+          aria-labelledby="faq-heading"
+          class="app-prose max-w-app mt-12 w-full"
+        >
+          <h2 id="faq-heading" class="text-accent">
+            常見問題
+          </h2>
+          {faq.map(item => (
+            <div class="mt-6">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+      )
+    }
 
     <hr class="my-8 border-dashed" />
 

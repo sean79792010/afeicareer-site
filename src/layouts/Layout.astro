@@ -4,8 +4,16 @@ import { ClientRouter } from "astro:transitions";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
+import {
+  websiteSchema,
+  personSchema,
+  jsonLdGraph,
+} from "@/utils/structuredData";
 import config from "@/config";
 import "@/styles/global.css";
+
+// 全站結構化資料：WebSite + Person（品牌識別 / E-E-A-T），每頁輸出。
+const siteJsonLd = jsonLdGraph(websiteSchema, personSchema);
 
 type Props = {
   title?: string;
@@ -86,6 +94,9 @@ const rssHref = getRelativeLocaleUrl(
       title={site.title}
       href={new URL(rssHref, Astro.site)}
     />
+
+    <!-- 全站結構化資料（WebSite + Person） -->
+    <script type="application/ld+json" is:inline set:html={siteJsonLd} />
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->
     <meta name="theme-color" content="" />

@@ -5,7 +5,15 @@ import Header from "@/components/Header.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
+import { PERSON_ID, SITE_URL, jsonLdGraph } from "@/utils/structuredData";
 import config from "@/config";
+
+// About = 霏霏個人檔案頁：ProfilePage 指向全站已輸出的 Person（強化 E-E-A-T）
+const profileJsonLd = jsonLdGraph({
+  "@type": "ProfilePage",
+  "@id": `${SITE_URL}/about/`,
+  mainEntity: { "@id": PERSON_ID },
+});
 
 const about = await getEntry("pages", "about");
 
@@ -24,6 +32,10 @@ const { Content } = await render(about);
   ogImage={about.data.ogImage}
   canonicalURL={about.data.canonicalURL}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={profileJsonLd} />
+  </Fragment>
+
   <Header />
 
   <Breadcrumb />
