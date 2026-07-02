@@ -25,7 +25,8 @@ collections:
     fields:
       - { name: title, label: 標題, widget: string }
       - { name: slug, label: 網址代稱（英文小寫、用 - 連字）, widget: string, hint: "例：nursing-career-map，只用英文/數字/連字號，決定文章網址" }
-      - { name: pubDatetime, label: 發佈時間, widget: datetime, date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false }
+      # format 帶 Z(+08:00 offset)避免存成無時區字串被當 UTC → 文章被誤判成未來排程而隱藏
+      - { name: pubDatetime, label: 發佈時間, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: false }
       - { name: description, label: 摘要（SEO 用，1-2 句）, widget: text }
       - { name: tags, label: 標籤, widget: list, default: ["others"] }
       - { name: draft, label: 草稿（打勾＝不公開）, widget: boolean, default: true }
