@@ -20,7 +20,7 @@ export const personSchema = {
   name: site.author,
   jobTitle: "護理師暨職涯諮詢師",
   description:
-    "具 8 年臨床護理經驗的護理師，兼具職業衛生護理師與職涯諮詢師資歷，專注協助護理人員規劃轉職與職涯發展。",
+    "具 8 年臨床護理經驗的護理師，兼具勞工健康服務護理人員與職涯諮詢師資歷，專注協助護理人員規劃轉職與職涯發展。",
   url: `${SITE_URL}/about/`,
   ...(sameAs.length ? { sameAs } : {}),
   knowsAbout: [
