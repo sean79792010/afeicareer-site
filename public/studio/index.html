@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#38352E">
+<title>霏霏 護理職涯腳本系統</title>
+</head>
+<body>
+<style>
+  :root{
+    --ground:#F1EDE4; --paper:#FCFAF5; --ink:#38352E; --muted:#8C867A;
+    --sage:#7E9078; --sage-deep:#5C6E56; --sage-tint:#E9EFE4;
+    --rose:#C6A79E; --rose-tint:#F3E9E4; --line:#E4DECF;
+    --shadow:0 1px 2px rgba(70,64,50,.06),0 6px 20px rgba(70,64,50,.06);
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+    --serif:"Songti TC","Noto Serif TC","Source Han Serif TC",serif;
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--ground); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; padding-bottom:40px;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 16px}
+
+  /* top bar */
+  header.bar{
+    position:sticky; top:0; z-index:20; background:rgba(56,53,46,.97);
+    color:#F1EDE4; backdrop-filter:blur(6px);
+  }
+  .bar .wrap{display:flex; align-items:center; gap:12px; height:56px}
+  .wordmark{font-family:var(--serif); font-size:19px; font-weight:600; letter-spacing:.5px}
+  .wordmark small{font-family:var(--sans); font-weight:400; font-size:11px; opacity:.7; letter-spacing:1.5px; display:block; margin-top:-2px}
+  .daychip{margin-left:auto; background:var(--sage); color:#fff; font-size:12.5px; font-weight:600;
+    padding:5px 12px; border-radius:999px; letter-spacing:.5px; white-space:nowrap;
+    font-variant-numeric:tabular-nums}
+
+  /* tabs */
+  nav.tabs{position:sticky; top:56px; z-index:19; background:var(--ground); border-bottom:1px solid var(--line)}
+  nav.tabs .wrap{display:flex; gap:4px}
+  .tab{flex:1; text-align:center; padding:13px 4px 11px; font-size:14px; font-weight:600; color:var(--muted);
+    background:none; border:none; border-bottom:2.5px solid transparent; cursor:pointer; font-family:inherit}
+  .tab[aria-selected="true"]{color:var(--sage-deep); border-bottom-color:var(--sage)}
+  .tab:focus-visible{outline:2px solid var(--sage); outline-offset:-2px; border-radius:4px}
+
+  main{padding-top:20px}
+  .panel[hidden]{display:none}
+  .step-label{font-size:12px; font-weight:700; letter-spacing:2px; color:var(--sage-deep); text-transform:uppercase; margin:0 0 4px}
+  .step-title{font-family:var(--serif); font-size:22px; font-weight:600; margin:0 0 4px; text-wrap:balance}
+  .step-hint{color:var(--muted); font-size:13.5px; margin:0 0 16px}
+
+  /* selection grid */
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media(max-width:420px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--paper); border:1.5px solid var(--line); border-radius:var(--r); padding:14px;
+    text-align:left; cursor:pointer; font-family:inherit; transition:border-color .15s, background .15s, transform .05s;
+    box-shadow:var(--shadow); display:flex; flex-direction:column; gap:3px}
+  .card:hover{border-color:var(--sage)}
+  .card:active{transform:scale(.99)}
+  .card[aria-pressed="true"]{border-color:var(--sage); background:var(--sage-tint)}
+  .card:focus-visible{outline:2px solid var(--sage); outline-offset:2px}
+  .card b{font-size:15px; font-weight:600}
+  .card span{font-size:12.5px; color:var(--muted); line-height:1.45}
+
+  .backlink{background:none;border:none;color:var(--sage-deep);font-weight:600;font-size:13.5px;
+    cursor:pointer;padding:6px 0;font-family:inherit;margin-bottom:6px}
+  .crumb{display:inline-block;background:var(--rose-tint);color:#9a6f61;font-size:12.5px;font-weight:600;
+    padding:4px 11px;border-radius:999px;margin-bottom:14px}
+
+  /* settings form */
+  .field{margin-bottom:20px}
+  .field > label{display:block; font-size:13px; font-weight:700; letter-spacing:.5px; margin-bottom:8px}
+  select,textarea,input[type=text]{width:100%; font-family:inherit; font-size:15px; color:var(--ink);
+    background:var(--paper); border:1.5px solid var(--line); border-radius:10px; padding:11px 12px}
+  select:focus,textarea:focus,input:focus{outline:none;border-color:var(--sage)}
+  textarea{resize:vertical; min-height:64px; line-height:1.5}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{background:var(--paper); border:1.5px solid var(--line); border-radius:999px; padding:7px 14px;
+    font-size:13.5px; font-family:inherit; cursor:pointer; color:var(--ink); transition:.12s}
+  .chip:hover{border-color:var(--sage)}
+  .chip[aria-pressed="true"]{background:var(--sage); border-color:var(--sage); color:#fff}
+  .chip:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--sage); color:#fff; border:none; border-radius:12px; padding:15px;
+    font-size:16px; font-weight:700; font-family:inherit; cursor:pointer; box-shadow:var(--shadow)}
+  .btn:hover{background:var(--sage-deep)}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:none;color:var(--sage-deep);border:1.5px solid var(--sage);box-shadow:none}
+  .btn:focus-visible{outline:2px solid var(--sage-deep);outline-offset:2px}
+
+  /* result */
+  .result{background:var(--paper);border:1.5px solid var(--sage);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+  .result h3{margin:0 0 10px;font-size:14px;font-weight:700;color:var(--sage-deep);letter-spacing:.5px}
+  .promptbox{white-space:pre-wrap;font-size:13.5px;line-height:1.62;background:#fff;border:1px solid var(--line);
+    border-radius:10px;padding:13px;max-height:300px;overflow-y:auto;color:#4a463d}
+  .row{display:flex;gap:10px;margin-top:12px}
+  .row .btn{flex:1}
+
+  /* records */
+  .rec{background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--shadow)}
+  .rec .meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:5px;font-variant-numeric:tabular-nums}
+  .rec .tag{background:var(--sage-tint);color:var(--sage-deep);padding:2px 8px;border-radius:999px;font-weight:600}
+  .rec b{font-size:14.5px;font-weight:600;display:block;margin-bottom:8px}
+  .rec .acts{display:flex;gap:8px}
+  .rec .acts button{font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;padding:6px 12px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+  .rec .acts button:hover{border-color:var(--sage)}
+  .empty{text-align:center;color:var(--muted);padding:48px 20px;font-size:14px}
+  .empty .big{font-size:34px;margin-bottom:10px}
+
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+    background:var(--sage-deep);color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;
+    box-shadow:0 8px 24px rgba(70,64,50,.25);opacity:0;pointer-events:none;transition:.25s;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:30px;line-height:1.7}
+</style>
+
+<header class="bar"><div class="wrap">
+  <div class="wordmark">霏霏 腳本系統<small>護理職涯內容產生器</small></div>
+  <div class="daychip" id="daychip">第 1 天</div>
+</div></header>
+
+<nav class="tabs"><div class="wrap">
+  <button class="tab" data-tab="pick" aria-selected="true">靈感選題</button>
+  <button class="tab" data-tab="set" aria-selected="false">腳本設定</button>
+  <button class="tab" data-tab="rec" aria-selected="false">產出紀錄</button>
+</div></nav>
+
+<main class="wrap">
+
+  <!-- PICK -->
+  <section class="panel" id="panel-pick">
+    <div id="view-series">
+      <p class="step-label">Step 1</p>
+      <h2 class="step-title">選一個系列</h2>
+      <p class="step-hint">先選內容方向，再挑今天要寫的角度。</p>
+      <div class="grid" id="seriesGrid"></div>
+    </div>
+    <div id="view-angle" hidden>
+      <button class="backlink" id="backSeries">← 換系列</button>
+      <div class="crumb" id="angleCrumb"></div>
+      <p class="step-label">Step 2</p>
+      <h2 class="step-title">選創作方向</h2>
+      <p class="step-hint">挑一個切入角度，帶進設定。</p>
+      <div class="grid" id="angleGrid"></div>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="panel" id="panel-set" hidden>
+    <p class="step-label">Step 3</p>
+    <h2 class="step-title">腳本設定</h2>
+    <p class="step-hint">設定好，一鍵產生可貼到 Claude 的提示詞。</p>
+
+    <div class="field">
+      <label>系列 × 方向</label>
+      <div class="crumb" id="setCrumb">尚未選題 — 先回「靈感選題」挑一個</div>
+    </div>
+
+    <div class="field">
+      <label for="topic">今天的主題 / 題目</label>
+      <select id="topicSelect"></select>
+      <textarea id="topicCustom" placeholder="或自己輸入一個題目…" style="margin-top:8px"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="platform">發佈平台</label>
+      <select id="platform">
+        <option>Threads 短文</option>
+        <option>IG 單張圖文</option>
+        <option>IG 輪播 carousel</option>
+        <option>Podcast 講稿</option>
+        <option>部落格文章</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="length">篇幅長度</label>
+      <select id="length">
+        <option>短（約 150–250 字，一個鉤子講一件事）</option>
+        <option selected>中（約 300–500 字，故事完整）</option>
+        <option>長（約 800–1500 字，深度展開）</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>腳本結構（選一個）</label>
+      <div class="chips" id="structChips"></div>
+    </div>
+
+    <div class="field">
+      <label>語氣風格（可複選）</label>
+      <div class="chips" id="toneChips"></div>
+    </div>
+
+    <div class="field">
+      <label for="hook">想強調的重點 / 鉤子（選填）</label>
+      <textarea id="hook" placeholder="例如：想帶到某個真實個案、某句金句、某個轉折…"></textarea>
+    </div>
+
+    <button class="btn" id="genBtn">✦ 產生提示詞</button>
+
+    <div id="resultWrap" style="margin-top:20px" hidden>
+      <div class="result">
+        <h3>提示詞（複製貼到 Claude）</h3>
+        <div class="promptbox" id="promptBox"></div>
+        <div class="row">
+          <button class="btn" id="copyBtn">複製</button>
+          <button class="btn ghost" id="saveBtn">存進紀錄</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECORDS -->
+  <section class="panel" id="panel-rec" hidden>
+    <p class="step-label">產出紀錄</p>
+    <h2 class="step-title">你產過的題目</h2>
+    <p class="step-hint">存在你自己的裝置，換裝置不會同步。</p>
+    <div id="recList"></div>
+  </section>
+
+  <p class="foot">霏霏 護理職涯腳本系統 · v1<br>資料只存在這台裝置的瀏覽器，沒有上傳任何地方。</p>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var LS="feiScript.v1";
+  var store=JSON.parse(localStorage.getItem(LS)||"{}");
+  function save(){localStorage.setItem(LS,JSON.stringify(store));}
+
+  /* ---------- 天數 ---------- */
+  var today=new Date(); var todayKey=today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+  if(!store.firstDay){store.firstDay=todayKey; store.days=1;}
+  if(store.lastOpen!==todayKey){
+    // count distinct calendar days opened
+    store.days=(store.days||1);
+    if(store.lastOpen){ store.days++; }
+    store.lastOpen=todayKey; save();
+  } else { store.lastOpen=todayKey; }
+  document.getElementById("daychip").textContent="第 "+(store.days||1)+" 天";
+
+  /* ---------- 內容資料（護理職涯版）---------- */
+  var SERIES=[
+    {k:"轉職地圖",d:"正常班／不輪班的出路",angles:[
+      {t:"出路盤點",d:"某條路你可能沒想過"},
+      {t:"薪水真相",d:"這條路實際能拿多少"},
+      {t:"適合誰",d:"什麼個性走這條最順"},
+      {t:"踩雷提醒",d:"轉過去才發現的事"},
+      {t:"學歷迷思",d:"要不要為轉職念二技"},
+      {t:"我的選擇",d:"我當初怎麼走出臨床"}
+    ]},
+    {k:"公職護理師",d:"考照 · 調動 · 體制",angles:[
+      {t:"考不考得上",d:"門檻與準備的真相"},
+      {t:"調動制度",d:"考上能不能換單位"},
+      {t:"薪水結構",d:"高考普考差在哪"},
+      {t:"體制荒謬",d:"只有內部人懂的事"},
+      {t:"穩定的代價",d:"鐵飯碗換掉了什麼"},
+      {t:"給想考的你",d:"下決定前先知道"}
+    ]},
+    {k:"職護之路",d:"企業職護 · 特約 · 勞健",angles:[
+      {t:"職護在做什麼",d:"一天的真實樣貌"},
+      {t:"專任 vs 特約",d:"兩條路怎麼選"},
+      {t:"轉職護門檻",d:"52 小時與 3 年那些規則"},
+      {t:"價值定位",d:"職護怎麼被公司看見"},
+      {t:"薪資談判",d:"職護怎麼談到好價"},
+      {t:"我的職護日常",d:"從臨床到廠護的轉變"}
+    ]},
+    {k:"長照與個管",d:"A 個管 · 照專 · CMS",angles:[
+      {t:"個管在忙什麼",d:"照專與 A 個管的分工"},
+      {t:"入行門檻",d:"護理背景的優勢"},
+      {t:"藍海需求",d:"長照缺工的機會"},
+      {t:"真實挑戰",d:"家訪與文書的兩難"},
+      {t:"薪資與發展",d:"這條路能走多遠"}
+    ]},
+    {k:"臨床甘苦談",d:"輪班 · 情緒 · 現場",angles:[
+      {t:"輪班之痛",d:"只有輪過的人懂"},
+      {t:"崩潰瞬間",d:"辦公室裡沒人知道的"},
+      {t:"暖心時刻",d:"讓我撐下去的一句話"},
+      {t:"離開的念頭",d:"想登出的那些日子"},
+      {t:"護理魂",d:"為什麼還是捨不得"}
+    ]},
+    {k:"職涯迷茫",d:"自我探索 · 選擇 · 卡關",angles:[
+      {t:"我適合嗎",d:"反覆問自己的那段"},
+      {t:"卡住怎麼辦",d:"想動又不敢的兩難"},
+      {t:"認識自己",d:"用性格找方向"},
+      {t:"第一步",d:"跨出去其實沒那麼難"},
+      {t:"別人的眼光",d:"轉職要不要顧家人"}
+    ]},
+    {k:"個案故事",d:"諮詢真實案例（去識別）",angles:[
+      {t:"轉身故事",d:"她怎麼走出來的"},
+      {t:"卡點與突破",d:"一次談話的轉折"},
+      {t:"選擇的勇氣",d:"做決定那一刻"},
+      {t:"陪跑歷程",d:"從迷茫到落地"}
+    ]},
+    {k:"品牌與經營",d:"諮詢師日常 · 心法",angles:[
+      {t:"為什麼做這行",d:"從護理到諮詢"},
+      {t:"收費的意義",d:"助人也能好好收費"},
+      {t:"諮詢幕後",d:"一場諮詢在做什麼"},
+      {t:"觀念翻轉",d:"對護理職涯的迷思"},
+      {t:"品牌初心",d:"我懂你的痛，因為我走過"}
+    ]}
+  ];
+
+  // 每個系列可再給推薦題目（主題下拉）
+  function recommendTopics(series,angle){
+    return [
+      series+"｜"+angle+"：一個真實的小故事開場",
+      series+"｜"+angle+"：破除一個常見迷思",
+      series+"｜"+angle+"：3 個你該知道的重點",
+      series+"｜"+angle+"：我自己走過的經驗",
+      series+"｜"+angle+"：如果重來我會怎麼選"
+    ];
+  }
+
+  var STRUCTS=["個案故事型","對比型","清單型","問答型","陪伴型","揭祕型","翻轉型","時間軸型","決策型","觀點型"];
+  var TONES=["溫暖同理","真誠告白","犀利直白","專業乾貨","幽默自嘲","鼓勵打氣"];
+
+  /* ---------- 狀態 ---------- */
+  var sel={series:null,angle:null,struct:"個案故事型",tones:["溫暖同理"]};
+
+  /* ---------- 選題 ---------- */
+  var seriesGrid=document.getElementById("seriesGrid");
+  SERIES.forEach(function(s){
+    var b=document.createElement("button");
+    b.className="card"; b.setAttribute("aria-pressed","false");
+    b.innerHTML="<b>"+s.k+"</b><span>"+s.d+"</span>";
+    b.onclick=function(){ sel.series=s.k; openAngles(s); };
+    seriesGrid.appendChild(b);
+  });
+
+  var viewSeries=document.getElementById("view-series"), viewAngle=document.getElementById("view-angle");
+  var angleGrid=document.getElementById("angleGrid"), angleCrumb=document.getElementById("angleCrumb");
+  function openAngles(s){
+    angleCrumb.textContent="系列：" + s.k;
+    angleGrid.innerHTML="";
+    s.angles.forEach(function(a){
+      var b=document.createElement("button");
+      b.className="card"; b.setAttribute("aria-pressed","false");
+      b.innerHTML="<b>"+a.t+"</b><span>"+a.d+"</span>";
+      b.onclick=function(){ sel.angle=a.t; goSettings(); };
+      angleGrid.appendChild(b);
+    });
+    viewSeries.hidden=true; viewAngle.hidden=false; window.scrollTo(0,0);
+  }
+  document.getElementById("backSeries").onclick=function(){ viewAngle.hidden=true; viewSeries.hidden=false; };
+
+  /* ---------- 設定 ---------- */
+  var setCrumb=document.getElementById("setCrumb"), topicSelect=document.getElementById("topicSelect");
+  var structChips=document.getElementById("structChips"), toneChips=document.getElementById("toneChips");
+  STRUCTS.forEach(function(x){ structChips.appendChild(mkChip(x,false,function(el){
+    [].forEach.call(structChips.children,function(c){c.setAttribute("aria-pressed","false");});
+    el.setAttribute("aria-pressed","true"); sel.struct=x;
+  })); });
+  TONES.forEach(function(x){ toneChips.appendChild(mkChip(x, x==="溫暖同理", function(el){
+    var on=el.getAttribute("aria-pressed")==="true"; el.setAttribute("aria-pressed", on?"false":"true");
+    sel.tones = [].filter.call(toneChips.children,function(c){return c.getAttribute("aria-pressed")==="true";})
+                  .map(function(c){return c.textContent;});
+  })); });
+  // default struct chip highlight
+  structChips.children[0].setAttribute("aria-pressed","true");
+
+  function mkChip(label,on,fn){
+    var b=document.createElement("button"); b.className="chip"; b.type="button";
+    b.textContent=label; b.setAttribute("aria-pressed",on?"true":"false");
+    b.onclick=function(){fn(b);}; return b;
+  }
+
+  function goSettings(){
+    setCrumb.textContent = sel.series + " ｜ " + sel.angle;
+    topicSelect.innerHTML="";
+    var opts=["— 選一個推薦題目（或下面自己輸入）—"].concat(recommendTopics(sel.series,sel.angle));
+    opts.forEach(function(o,i){ var op=document.createElement("option"); op.textContent=o; if(i===0)op.value=""; topicSelect.appendChild(op); });
+    document.getElementById("topicCustom").value="";
+    document.getElementById("hook").value="";
+    document.getElementById("resultWrap").hidden=true;
+    switchTab("set"); window.scrollTo(0,0);
+  }
+
+  /* ---------- 產生提示詞 ---------- */
+  var PERSONA="你是「霏霏」——一位護理師暨職涯諮詢師（8 年臨床護理、5 年醫院專任職護），現在專門陪護理人走轉職與職涯這條路。品牌核心是「我懂你的痛，因為我走過」。天賦是 S（陪伴助人）＋E（推動改變）＋A（內容表達）＋I（用觀察與資料佐證）。";
+  function buildPrompt(){
+    var topic=document.getElementById("topicCustom").value.trim() || topicSelect.value || (sel.series+"｜"+sel.angle);
+    var platform=document.getElementById("platform").value;
+    var length=document.getElementById("length").value;
+    var hook=document.getElementById("hook").value.trim();
+    var tones=sel.tones.length?sel.tones.join("、"):"溫暖同理";
+    var p="";
+    p+=PERSONA+"\n\n";
+    p+="請幫我寫一篇「"+platform+"」的內容。\n\n";
+    p+="【系列】"+sel.series+"\n";
+    p+="【創作方向】"+sel.angle+"\n";
+    p+="【主題】"+topic+"\n";
+    p+="【腳本結構】"+sel.struct+"\n";
+    p+="【語氣風格】"+tones+"\n";
+    p+="【篇幅】"+length+"\n";
+    if(hook) p+="【一定要帶到】"+hook+"\n";
+    p+="\n【寫作要求】\n";
+    p+="1. 用台灣人的口語繁體中文，不要 AI 腔、不要生硬書面語，不要濫用破折號與三段式排比。\n";
+    p+="2. 開頭第一句就要有情緒鉤子，抓住還在輪班、正在迷茫的護理師。\n";
+    p+="3. 用真實、具體的細節或個案感（可虛構但要像真的），不要空泛說教。\n";
+    p+="4. 站在「我也走過」的位置陪伴，不居高臨下。\n";
+    p+="5. 結尾給一個溫柔的收束或行動邀請（勿硬銷）。\n";
+    if(platform.indexOf("IG 輪播")>=0) p+="6. 用「一張一頁」的方式分成 6–8 張，每張標題＋短內文。\n";
+    if(platform.indexOf("Podcast")>=0) p+="6. 用講稿口吻，可加口語轉折，適合唸出來。\n";
+    p+="\n先給我 1 個版本，我看了再跟你調。";
+    return p;
+  }
+
+  var promptBox=document.getElementById("promptBox");
+  document.getElementById("genBtn").onclick=function(){
+    if(!sel.series){ toast("先去「靈感選題」挑一個系列"); switchTab("pick"); return; }
+    promptBox.textContent=buildPrompt();
+    document.getElementById("resultWrap").hidden=false;
+    document.getElementById("resultWrap").scrollIntoView({behavior:"smooth",block:"start"});
+  };
+  document.getElementById("copyBtn").onclick=function(){
+    copy(promptBox.textContent).then(function(){toast("已複製，貼到 Claude 就能用 ✦");});
+  };
+  document.getElementById("saveBtn").onclick=function(){
+    store.recs=store.recs||[];
+    store.recs.unshift({ts:Date.now(),series:sel.series,angle:sel.angle,
+      topic:(document.getElementById("topicCustom").value.trim()||topicSelect.value||"(推薦題目)"),
+      platform:document.getElementById("platform").value, prompt:promptBox.textContent});
+    if(store.recs.length>200)store.recs.length=200;
+    save(); renderRecs(); toast("已存進產出紀錄");
+  };
+
+  /* ---------- 紀錄 ---------- */
+  var recList=document.getElementById("recList");
+  function renderRecs(){
+    var r=store.recs||[];
+    if(!r.length){ recList.innerHTML='<div class="empty"><div class="big">🌱</div>還沒有紀錄。<br>去產生第一個提示詞，按「存進紀錄」就會出現在這。</div>'; return; }
+    recList.innerHTML="";
+    r.forEach(function(x,i){
+      var d=new Date(x.ts); var ds=(d.getMonth()+1)+"/"+d.getDate()+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+      var el=document.createElement("div"); el.className="rec";
+      el.innerHTML='<div class="meta"><span class="tag">'+esc(x.series)+'</span><span>'+esc(x.angle)+'</span><span>'+esc(x.platform)+'</span><span>'+ds+'</span></div>'+
+        '<b>'+esc(x.topic)+'</b><div class="acts"><button data-c="'+i+'">複製提示詞</button><button data-d="'+i+'">刪除</button></div>';
+      recList.appendChild(el);
+    });
+    [].forEach.call(recList.querySelectorAll("[data-c]"),function(b){b.onclick=function(){copy(store.recs[b.dataset.c].prompt).then(function(){toast("已複製");});};});
+    [].forEach.call(recList.querySelectorAll("[data-d]"),function(b){b.onclick=function(){store.recs.splice(b.dataset.d,1);save();renderRecs();};});
+  }
+
+  /* ---------- tabs ---------- */
+  var tabs=[].slice.call(document.querySelectorAll(".tab"));
+  function switchTab(name){
+    tabs.forEach(function(t){t.setAttribute("aria-selected", t.dataset.tab===name?"true":"false");});
+    ["pick","set","rec"].forEach(function(n){document.getElementById("panel-"+n).hidden=(n!==name);});
+    if(name==="rec")renderRecs();
+  }
+  tabs.forEach(function(t){t.onclick=function(){switchTab(t.dataset.tab);window.scrollTo(0,0);};});
+
+  /* ---------- utils ---------- */
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function copy(t){ if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(t);
+    return new Promise(function(res){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(ta);res();});}
+  var toastEl=document.getElementById("toast"),toastT;
+  function toast(m){toastEl.textContent=m;toastEl.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove("show");},1900);}
+
+  renderRecs();
+})();
+</script>
+
+</body>
+</html>
