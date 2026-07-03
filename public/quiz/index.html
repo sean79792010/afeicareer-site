@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38352E">
+<title>護理師轉職方向測驗｜霏霏 護理職涯諮詢</title>
+<meta name="description" content="還在輪班硬撐？花 2 分鐘，測出護理師的你可能適合哪幾條正常班／不輪班的路。">
+<style>
+  :root{
+    --ground:#F1EDE4; --paper:#FCFAF5; --ink:#38352E; --muted:#8C867A;
+    --sage:#7E9078; --sage-deep:#5C6E56; --sage-tint:#E9EFE4;
+    --rose:#C6A79E; --rose-tint:#F3E9E4; --line:#E4DECF;
+    --shadow:0 1px 2px rgba(70,64,50,.06),0 8px 24px rgba(70,64,50,.07);
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+    --serif:"Songti TC","Noto Serif TC","Source Han Serif TC",serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;padding:0 16px 48px}
+  .wrap{max-width:560px;margin:0 auto}
+  header{text-align:center;padding:28px 0 8px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--sage-deep);text-transform:uppercase}
+  h1{font-family:var(--serif);font-size:26px;font-weight:600;margin:6px 0 6px;text-wrap:balance}
+  header p{color:var(--muted);font-size:14px;margin:0}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px 20px;margin-top:18px}
+
+  /* progress */
+  .bar{height:7px;background:var(--sage-tint);border-radius:999px;overflow:hidden;margin-bottom:6px}
+  .bar > i{display:block;height:100%;background:var(--sage);border-radius:999px;transition:width .3s}
+  .pcount{font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+  .q{font-size:19px;font-weight:600;margin:14px 0 16px;text-wrap:balance;line-height:1.5}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 15px;font-family:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.45}
+  .opt:hover{border-color:var(--sage);background:var(--sage-tint)}
+  .opt:active{transform:scale(.995)}
+  .opt:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+
+  .back{background:none;border:none;color:var(--muted);font-size:13.5px;font-family:inherit;cursor:pointer;padding:14px 0 0}
+  .back:hover{color:var(--sage-deep)}
+
+  /* result */
+  .rlead{text-align:center;margin-bottom:6px}
+  .rlead .k{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--sage-deep)}
+  .rlead h2{font-family:var(--serif);font-size:23px;margin:6px 0}
+  .rlead p{color:var(--muted);font-size:14px;margin:0}
+  .match{border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;margin-top:12px;background:#fff}
+  .match .rank{display:inline-block;background:var(--sage);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;margin-bottom:8px}
+  .match.top .rank{background:var(--sage-deep)}
+  .match h3{margin:0 0 4px;font-size:17px;font-weight:700}
+  .match p{margin:0;font-size:14px;color:#5c584e;line-height:1.55}
+  .cta{margin-top:20px;background:var(--sage-tint);border-radius:14px;padding:18px 16px;text-align:center}
+  .cta p{margin:0 0 12px;font-size:14.5px;line-height:1.6}
+  .btn{display:inline-block;background:var(--sage);color:#fff;text-decoration:none;border-radius:11px;padding:12px 22px;font-weight:700;font-size:15px;box-shadow:var(--shadow)}
+  .btn:hover{background:var(--sage-deep)}
+  .btn.ghost{background:none;color:var(--sage-deep);border:1.5px solid var(--sage);box-shadow:none;margin-left:8px}
+  .again{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;cursor:pointer;display:block;margin:18px auto 0}
+  .foot{color:var(--muted);font-size:11.5px;text-align:center;margin-top:26px;line-height:1.7}
+  a.ilink{color:var(--sage-deep);font-weight:600;text-decoration:none;border-bottom:1px solid var(--sage-tint)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">護理師轉職方向測驗</div>
+    <h1>除了臨床，你其實還能走哪條路？</h1>
+    <p>花 2 分鐘，測出你可能適合的 2–3 個正常班方向</p>
+  </header>
+
+  <div class="card" id="card"></div>
+
+  <p class="foot">此測驗只是幫你收斂方向、不是絕對答案。<br>結果不會上傳，測完就消失。｜霏霏 護理職涯諮詢</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var IG="https://www.instagram.com/afeicareer";
+  var ARTICLE="/posts/nursing-normal-shift-career-map/";
+  var PRICING="/pricing/";
+
+  // 10 條路
+  var CAT={
+    c1:{n:"診所護理師",d:"作息規律、離家近，還能用到臨床技術。不同科別（家醫、皮膚醫美、中醫、小兒…）差很多，選你受得了的日常。"},
+    c2:{n:"公職與學校護理師",d:"最穩定、有月退保障。公職護理師高考三級五專也能考、不必念二技；校護跟著學期走。適合能讀書考試、求安定的你。"},
+    c3:{n:"長照與個管",d:"需求最大的藍海，多日班或彈性工時。居家護理、A 個管、照專，用護理專業做個案管理，喜歡跑外面、對人有耐心的你很合。"},
+    c4:{n:"嬰幼兒照護",d:"托嬰中心、幼兒園護理師，正常日班。適合真心喜歡孩子、細心溫柔又能跟家長溝通的你。"},
+    c5:{n:"職護與健康促進",d:"從「治療」轉「預防」。企業職護、健檢、衛教師，作息穩定、環境單純。想離開病房又想發揮專業的熱門方向。"},
+    c6:{n:"臨床研究與教育",d:"純日班、週休二日。研究護理師、國考講師、實習指導老師。想遠離病房又用得到臨床底、喜歡嚴謹或教學的你。"},
+    c7:{n:"醫院非臨床",d:"留在醫院但脫離輪班。個管、感管、品管、教學護理師。適合想擺脫大夜、對流程與數據有耐心的你（多半沒夜班費，想清楚再跳）。"},
+    c8:{n:"病歷與資訊管理",d:"安靜、純日班。資訊護理師、疾病分類師、病歷資訊師。適合細心、能久坐專注、喜歡把資料整理清楚的你。"},
+    c9:{n:"醫院日班專科",d:"進階臨床但不用大夜。高壓氧、傷造口、血液透析護理師。還想做技術性照護、又想擺脫輪班的你。"},
+    c10:{n:"醫療產業與跨界",d:"薪資天花板最高，但多伴隨業績或進度壓力。藥廠 CRA、保險核保／理賠、醫美諮詢。想把護理帶進產業、拚收入的你。"}
+  };
+
+  var Q=[
+    {q:"現在最讓你想逃的是什麼？",o:[
+      ["輪班、大夜，身體快壞掉",{c1:1,c2:1,c5:1,c6:1,c7:1,c8:1,c9:1}],
+      ["病人量太大、永遠跑不完",{c2:1,c6:1,c7:1,c8:1,c5:1}],
+      ["醫療糾紛、家屬壓力",{c8:2,c6:1,c7:1,c2:1}],
+      ["看多了生死，情緒被榨乾",{c8:2,c2:1,c6:1,c5:1}],
+      ["薪水配不上我的付出",{c10:2,c1:1,c5:1}],
+      ["看不到升遷或發展",{c10:1,c5:1,c6:1,c7:1}]
+    ]},
+    {q:"如果離開臨床，你最捨不得放掉的是？",o:[
+      ["直接照顧人、被需要的感覺",{c1:2,c3:2,c5:1,c4:1}],
+      ["我辛苦練起來的臨床技術",{c9:2,c1:1,c3:1}],
+      ["穩定的收入",{c2:2,c5:1}],
+      ["其實沒有，我想徹底換跑道",{c10:2,c8:1,c6:1}]
+    ]},
+    {q:"你理想中的一天，長什麼樣子？",o:[
+      ["規律日班，能準時下班回家",{c2:2,c1:1,c5:1,c8:1}],
+      ["到處跑、不被綁在同一個地方",{c3:2,c5:1}],
+      ["安靜、能專心做自己的事",{c8:2,c6:1}],
+      ["有挑戰、收入有想像空間",{c10:2,c5:1}]
+    ]},
+    {q:"要你「再念書或再考一張證照」，你？",o:[
+      ["可以，為了更好的路我願意",{c2:1,c5:1,c6:1,c9:1}],
+      ["盡量不要，我想趕快上手就好",{c1:2,c3:1,c8:1}],
+      ["看情況，划算就考",{c5:1,c10:1,c9:1}]
+    ]},
+    {q:"哪個工作場景，你最有畫面、最想待？",o:[
+      ["診所，跟固定的病人和社區互動",{c1:3}],
+      ["公部門或學校，穩定、有制度",{c2:3}],
+      ["到宅、社區，陪長輩和家庭",{c3:3}],
+      ["企業裡，顧一整間公司員工的健康",{c5:3}],
+      ["醫院但不輪班，做個管／品管／教學",{c7:3}],
+      ["用護理背景進產業（藥廠、保險、醫材）",{c10:3}]
+    ]},
+    {q:"面對「業績、KPI、成交」這種壓力，你？",o:[
+      ["完全不要，會讓我很焦慮",{c2:1,c3:1,c6:1,c8:1}],
+      ["還好，只要有回報我可以拚",{c10:2,c1:1}],
+      ["看金額，值得就接受",{c10:1,c5:1}]
+    ]},
+    {q:"你覺得自己比較像哪種人？",o:[
+      ["喜歡跟人深聊、陪伴、衛教",{c3:2,c5:2,c1:1,c4:1}],
+      ["喜歡數據、邏輯，把事情整理清楚",{c8:2,c7:2,c6:1}],
+      ["喜歡教學、帶人、講給別人聽",{c6:2,c5:1}],
+      ["喜歡獨立作業，少一點人際",{c8:2,c6:1,c3:1}]
+    ]},
+    {q:"最後，有沒有特別的偏好？",o:[
+      ["我特別喜歡小孩、嬰幼兒",{c4:3}],
+      ["想做進階臨床技術（傷口、透析、高壓氧），但不要大夜",{c9:3}],
+      ["沒有特別，看整體最合適的",{}]
+    ]}
+  ];
+
+  var card=document.getElementById("card");
+  var idx=0, score={}, picks=[];
+  Object.keys(CAT).forEach(function(k){score[k]=0;});
+
+  function render(){
+    var q=Q[idx];
+    var pct=Math.round(idx/Q.length*100);
+    var h='<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="pcount">第 '+(idx+1)+' / '+Q.length+' 題</div>'+
+      '<div class="q">'+q.q+'</div><div class="opts">';
+    q.o.forEach(function(o,i){ h+='<button class="opt" data-i="'+i+'">'+o[0]+'</button>'; });
+    h+='</div>';
+    if(idx>0) h+='<button class="back" id="back">← 上一題</button>';
+    card.innerHTML=h;
+    [].forEach.call(card.querySelectorAll(".opt"),function(b){
+      b.onclick=function(){ choose(q.o[b.dataset.i][1]); };
+    });
+    var bk=document.getElementById("back"); if(bk) bk.onclick=goBack;
+    window.scrollTo(0,0);
+  }
+  function choose(weights){
+    picks[idx]=weights;
+    for(var k in weights){ score[k]=(score[k]||0)+weights[k]; }
+    idx++;
+    if(idx>=Q.length) result(); else render();
+  }
+  function goBack(){
+    idx--; var w=picks[idx]||{};
+    for(var k in w){ score[k]-=w[k]; }
+    render();
+  }
+
+  function result(){
+    var arr=Object.keys(CAT).map(function(k){return {k:k,v:score[k]||0};});
+    arr.sort(function(a,b){return b.v-a.v;});
+    var top=arr.filter(function(x){return x.v>0;}).slice(0,3);
+    if(top.length===0) top=arr.slice(0,3);
+    var h='<div class="rlead"><div class="k">你的結果</div>'+
+      '<h2>你可能適合這幾條路</h2>'+
+      '<p>依你的臨床狀態與偏好，收斂出這 2–3 個方向</p></div>';
+    top.forEach(function(x,i){
+      var c=CAT[x.k];
+      h+='<div class="match'+(i===0?' top':'')+'"><span class="rank">'+(i===0?'最match':'也很適合')+'</span>'+
+         '<h3>'+c.n+'</h3><p>'+c.d+'</p></div>';
+    });
+    h+='<div class="cta">'+
+       '<p>想看每條路<b>完整的薪資與門檻</b>，或想針對你的狀況一起討論？<br>'+
+       '這些正是我一對一諮詢在做的事。</p>'+
+       '<a class="btn" href="'+IG+'" target="_blank" rel="noopener">私訊 IG 領完整清單</a>'+
+       '<a class="btn ghost" href="'+PRICING+'">看諮詢方案</a></div>'+
+       '<p style="text-align:center;margin-top:16px;font-size:14px">想先讀懂每條路 → <a class="ilink" href="'+ARTICLE+'">40+ 種護理師轉職地圖</a></p>'+
+       '<button class="again" id="again">↺ 重新測一次</button>';
+    card.innerHTML=h;
+    document.getElementById("again").onclick=function(){
+      idx=0;picks=[];Object.keys(CAT).forEach(function(k){score[k]=0;});render();
+    };
+    window.scrollTo(0,0);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
