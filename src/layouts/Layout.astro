@@ -119,11 +119,8 @@ const rssHref = getRelativeLocaleUrl(
     -->
     <script is:inline>
       (function () {
-        const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const theme = stored ?? (prefersDark ? "dark" : "light");
+        // 固定淺色暖調（不跟隨系統深色模式）
+        const theme = "light";
         const root = document.firstElementChild;
         root?.setAttribute("data-theme", theme);
         root?.classList.toggle("dark", theme === "dark");

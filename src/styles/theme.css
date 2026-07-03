@@ -14,13 +14,13 @@
 /* Light — Nature Distilled:暖象牙底 + 精緻陶土(ui-ux-pro-max) */
 :root,
 [data-theme="light"] {
-  --background: #fbf8f3;
-  --foreground: #3d3229;
-  --accent: #a0503a;
+  --background: #faf6ef;
+  --foreground: #433d34;
+  --accent: #5f7059;
   --accent-foreground: #ffffff;
-  --muted: #efe8de;
-  --muted-foreground: #7d7266;
-  --border: #e7ddd0;
+  --muted: #ece6da;
+  --muted-foreground: #857c6e;
+  --border: #e5dccd;
 }
 
 /* Dark — 暖深咖啡底 + 亮陶土 */
