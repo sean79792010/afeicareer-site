@@ -37,6 +37,9 @@
   .opt:hover{border-color:var(--sage);background:var(--sage-tint)}
   .opt:active{transform:scale(.995)}
   .opt:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+  .opt[aria-pressed="true"]{border-color:var(--sage);background:var(--sage-tint);font-weight:600}
+  .btn:disabled{opacity:.45;cursor:default}
+  .hint{font-size:12.5px;color:var(--muted);margin:-6px 0 12px}
 
   .back{background:none;border:none;color:var(--muted);font-size:13.5px;font-family:inherit;cursor:pointer;padding:14px 0 0}
   .back:hover{color:var(--sage-deep)}
@@ -93,11 +96,12 @@
     c7:{n:"醫院非臨床",d:"留在醫院但脫離輪班。個管、感管、品管、教學護理師。適合想擺脫大夜、對流程與數據有耐心的你（多半沒夜班費，想清楚再跳）。"},
     c8:{n:"病歷與資訊管理",d:"安靜、純日班。資訊護理師、疾病分類師、病歷資訊師。適合細心、能久坐專注、喜歡把資料整理清楚的你。"},
     c9:{n:"醫院日班專科",d:"進階臨床但不用大夜。高壓氧、傷造口、血液透析護理師。還想做技術性照護、又想擺脫輪班的你。"},
-    c10:{n:"醫療產業與跨界",d:"薪資天花板最高，但多伴隨業績或進度壓力。藥廠 CRA、保險核保／理賠、醫美諮詢。想把護理帶進產業、拚收入的你。"}
+    c10:{n:"醫療產業與跨界",d:"薪資天花板最高，但多伴隨業績或進度壓力。藥廠 CRA、保險核保／理賠、醫美諮詢。想把護理帶進產業、拚收入的你。"},
+    c11:{n:"完全轉行／還在探索",d:"你想的可能不只是換科別，而是完全離開護理、換一個跑道。這超出這張「護理職涯地圖」的範圍——但這正是一對一諮詢最能陪你的：把你的能力、興趣與價值觀攤開，找出護理以外真正適合你的方向。"}
   };
 
   var Q=[
-    {q:"現在最讓你想逃的是什麼？",o:[
+    {q:"現在最讓你想逃的是什麼？（可複選）",m:true,o:[
       ["輪班、大夜，身體快壞掉",{c1:1,c2:1,c5:1,c6:1,c7:1,c8:1,c9:1}],
       ["病人量太大、永遠跑不完",{c2:1,c6:1,c7:1,c8:1,c5:1}],
       ["醫療糾紛、家屬壓力",{c8:2,c6:1,c7:1,c2:1}],
@@ -105,7 +109,7 @@
       ["薪水配不上我的付出",{c10:2,c1:1,c5:1}],
       ["看不到升遷或發展",{c10:1,c5:1,c6:1,c7:1}]
     ]},
-    {q:"如果離開臨床，你最捨不得放掉的是？",o:[
+    {q:"如果離開臨床，你最捨不得放掉的是？（可複選）",m:true,o:[
       ["直接照顧人、被需要的感覺",{c1:2,c3:2,c5:1,c4:1}],
       ["我辛苦練起來的臨床技術",{c9:2,c1:1,c3:1}],
       ["穩定的收入",{c2:2,c5:1}],
@@ -122,13 +126,14 @@
       ["盡量不要，我想趕快上手就好",{c1:2,c3:1,c8:1}],
       ["看情況，划算就考",{c5:1,c10:1,c9:1}]
     ]},
-    {q:"哪個工作場景，你最有畫面、最想待？",o:[
-      ["診所，跟固定的病人和社區互動",{c1:3}],
-      ["公部門或學校，穩定、有制度",{c2:3}],
-      ["到宅、社區，陪長輩和家庭",{c3:3}],
-      ["企業裡，顧一整間公司員工的健康",{c5:3}],
-      ["醫院但不輪班，做個管／品管／教學",{c7:3}],
-      ["用護理背景進產業（藥廠、保險、醫材）",{c10:3}]
+    {q:"想像轉職成功後的一個上班日，哪個畫面你最想要？",o:[
+      ["在診所，跟熟悉的病人、街坊寒暄，打針衛教",{c1:3}],
+      ["在公家單位或學校，坐辦公桌做衛生行政、準時下班",{c2:3}],
+      ["開車到長輩家換管路，陪家庭一起討論照顧計畫",{c3:3}],
+      ["在企業健康中心，幫上班族做健檢、辦健康講座",{c5:3}],
+      ["在醫院辦公室做個案管理、品質報表，不用進病房輪班",{c7:3}],
+      ["在藥廠或保險公司，用護理背景做審查、監測",{c10:3}],
+      ["我想完全脫離護理，換去跟醫療無關的領域",{c11:3,c10:1}]
     ]},
     {q:"面對「業績、KPI、成交」這種壓力，你？",o:[
       ["完全不要，會讓我很焦慮",{c2:1,c3:1,c6:1,c8:1}],
@@ -152,31 +157,43 @@
   var idx=0, score={}, picks=[];
   Object.keys(CAT).forEach(function(k){score[k]=0;});
 
+  var multiSel=[];
   function render(){
-    var q=Q[idx];
+    var q=Q[idx]; multiSel=[];
     var pct=Math.round(idx/Q.length*100);
     var h='<div class="bar"><i style="width:'+pct+'%"></i></div>'+
       '<div class="pcount">第 '+(idx+1)+' / '+Q.length+' 題</div>'+
-      '<div class="q">'+q.q+'</div><div class="opts">';
-    q.o.forEach(function(o,i){ h+='<button class="opt" data-i="'+i+'">'+o[0]+'</button>'; });
+      '<div class="q">'+q.q+'</div>';
+    if(q.m) h+='<div class="hint">可以選多個，選好按下面的按鈕</div>';
+    h+='<div class="opts">';
+    q.o.forEach(function(o,i){ h+='<button class="opt" data-i="'+i+'" aria-pressed="false">'+o[0]+'</button>'; });
     h+='</div>';
+    if(q.m) h+='<button class="btn" id="next" style="width:100%;margin-top:14px" disabled>選好了，下一題</button>';
     if(idx>0) h+='<button class="back" id="back">← 上一題</button>';
     card.innerHTML=h;
     [].forEach.call(card.querySelectorAll(".opt"),function(b){
-      b.onclick=function(){ choose(q.o[b.dataset.i][1]); };
+      b.onclick=function(){
+        if(q.m){
+          var i=+b.dataset.i, on=b.getAttribute("aria-pressed")==="true";
+          b.setAttribute("aria-pressed", on?"false":"true");
+          multiSel = on ? multiSel.filter(function(x){return x!==i;}) : multiSel.concat(i);
+          document.getElementById("next").disabled = multiSel.length===0;
+        } else { choose([q.o[+b.dataset.i][1]]); }
+      };
     });
+    var nx=document.getElementById("next");
+    if(nx) nx.onclick=function(){ if(multiSel.length) choose(multiSel.map(function(i){return q.o[i][1];})); };
     var bk=document.getElementById("back"); if(bk) bk.onclick=goBack;
     window.scrollTo(0,0);
   }
-  function choose(weights){
-    picks[idx]=weights;
-    for(var k in weights){ score[k]=(score[k]||0)+weights[k]; }
+  function choose(arr){
+    picks[idx]=arr;
+    arr.forEach(function(w){ for(var k in w){ score[k]=(score[k]||0)+w[k]; } });
     idx++;
     if(idx>=Q.length) result(); else render();
   }
   function goBack(){
-    idx--; var w=picks[idx]||{};
-    for(var k in w){ score[k]-=w[k]; }
+    idx--; (picks[idx]||[]).forEach(function(w){ for(var k in w){ score[k]-=w[k]; } });
     render();
   }
 
