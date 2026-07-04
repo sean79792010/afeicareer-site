@@ -4,6 +4,7 @@ pubDatetime: 2026-07-03T12:00:00+08:00
 title: 護理師談薪水
 featured: true
 draft: false
+category: 護理轉職
 tags:
   - 護理師談薪
   - 談薪水

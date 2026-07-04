@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import { getCategoriesWithCount } from "@/utils/categories";
+import config from "@/config";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const categories = getCategoriesWithCount(posts);
+
+const locale = Astro.currentLocale ?? config.site.lang;
+---
+
+<Layout title={`文章分類 | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main
+    pageTitle="文章分類"
+    pageDesc="依主題找文章：護理轉職、臨床新人調適、新手職護陪跑，還有一些職涯隨筆。"
+  >
+    <ul class="flex flex-col gap-4">
+      {
+        categories.map(cat => (
+          <li class="border-border hover:border-accent rounded-lg border p-4 transition-colors">
+            {cat.count > 0 ? (
+              <a
+                href={getRelativeLocaleUrl(locale, `categories/${cat.slug}`)}
+                class="block"
+              >
+                <h2 class="text-accent text-lg font-semibold">
+                  {cat.name}
+                  <span class="text-sm font-normal opacity-70">
+                    （{cat.count} 篇）
+                  </span>
+                </h2>
+                <p class="mt-1 text-sm opacity-80">{cat.description}</p>
+              </a>
+            ) : (
+              <div class="block opacity-70">
+                <h2 class="text-lg font-semibold">
+                  {cat.name}
+                  <span class="text-sm font-normal opacity-70">
+                    （敬請期待）
+                  </span>
+                </h2>
+                <p class="mt-1 text-sm opacity-80">{cat.description}</p>
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </Main>
+
+  <Footer />
+</Layout>

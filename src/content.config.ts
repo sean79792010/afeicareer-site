@@ -16,6 +16,10 @@ const posts = defineCollection({
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
+      // 文章主分類（四選一）。同步維護 src/utils/categories.ts 的 CATEGORIES。
+      category: z
+        .enum(["護理轉職", "臨床新人調適", "新手職護陪跑", "職涯隨筆"])
+        .optional(),
       ogImage: image().or(z.string()).optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),

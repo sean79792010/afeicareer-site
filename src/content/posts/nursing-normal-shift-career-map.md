@@ -4,6 +4,7 @@ pubDatetime: 2026-07-02T09:00:00+08:00
 title: 護理師轉職地圖：40+ 種正常班／不輪班出路完整對照
 featured: true
 draft: false
+category: 護理轉職
 tags:
   - 護理師轉職
   - 護理師正常班

@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPathsOptions } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Card from "@/components/Card.astro";
+import Footer from "@/components/Footer.astro";
+import Pagination from "@/components/Pagination.astro";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import { CATEGORIES, getCategorySlug } from "@/utils/categories";
+import config from "@/config";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+  return CATEGORIES.flatMap(cat => {
+    const categoryPosts = getSortedPosts(
+      posts.filter(({ data }) => data.category === cat.name)
+    );
+
+    return paginate(categoryPosts, {
+      params: { category: getCategorySlug(cat.name) },
+      props: { categoryName: cat.name, categoryDesc: cat.description },
+      pageSize: config.posts.perPage,
+    });
+  });
+}
+
+const { page, categoryName, categoryDesc } = Astro.props;
+---
+
+<Layout title={`分類：${categoryName} | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={`分類：${categoryName}`} pageDesc={categoryDesc}>
+    <ul>
+      {page.data.map(data => <Card {...data} />)}
+    </ul>
+  </Main>
+
+  <Pagination {page} />
+
+  <Footer noMarginTop={page.lastPage > 1} />
+</Layout>
