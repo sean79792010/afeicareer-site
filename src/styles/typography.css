@@ -90,14 +90,31 @@
       @apply focus-visible:outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dashed;
     }
 
-    /* 讓收合區塊一看就知道可以點開 */
+    /* 收合科別排成清單:「● → 科別名 → 點開看更多細節」 */
+    details:not(.callout) {
+      @apply block;
+    }
+
+    details:not(.callout) > summary {
+      list-style: none;
+    }
+
+    details:not(.callout) > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details:not(.callout) > summary::before {
+      content: "●　→　";
+      @apply font-normal;
+    }
+
     details:not(.callout) > summary::after {
-      content: "　▸ 點開看細節";
+      content: "　→　點開看更多細節";
       @apply text-accent text-sm font-normal;
     }
 
     details:not(.callout)[open] > summary::after {
-      content: "　▾ 收合";
+      content: "　→　收合";
     }
 
     pre {
