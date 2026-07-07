@@ -104,17 +104,17 @@
     }
 
     details:not(.callout) > summary::before {
-      content: "●　→　";
+      content: "●　";
       @apply font-normal;
     }
 
     details:not(.callout) > summary::after {
-      content: "　→　點開看更多細節";
+      content: "　👉 點開看更多細節";
       @apply text-accent text-sm font-normal;
     }
 
     details:not(.callout)[open] > summary::after {
-      content: "　→　收合";
+      content: "　收合";
     }
 
     pre {
