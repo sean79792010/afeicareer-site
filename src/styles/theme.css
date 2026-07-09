@@ -14,6 +14,7 @@
 /* Light — Nature Distilled:暖象牙底 + 精緻陶土(ui-ux-pro-max) */
 :root,
 [data-theme="light"] {
+  color-scheme: light;
   --background: #f1e6de;
   --foreground: #433d34;
   --accent: #5f7059;
@@ -25,6 +26,7 @@
 
 /* Dark — 暖深咖啡底 + 亮陶土 */
 [data-theme="dark"] {
+  color-scheme: dark;
   --background: #262019;
   --foreground: #ede4d8;
   --accent: #d98b6f;
