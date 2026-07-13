@@ -73,6 +73,16 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
 
 我的專業，是陪你把方向和心態理清楚，不是假裝什麼都懂。這份誠實，就是我能給你最實在的陪伴。
 
+## 關於「你能不能保證我一定上？」
+
+這是很多人會問的問題，我想誠實回答：**我不能保證結果。**
+
+錄不錄取，牽涉到有多少人在搶、面試官當天怎麼看你，這些不是我、也不是你能控制的。會拍胸脯保證「一定上」的人，你反而要小心。
+
+我能做的，是把你能控制的部分做到最好：把臨床經驗翻成對方聽得懂的價值、把優勢講到位、把常常失分的地方修掉。比起你自己一個人摸索，我能幫你抓對方向、準備得更有效率，少走很多冤枉路。錄取，是我陪你準備、加上你自己臨場發揮，一起完成的。
+
+如果你要的是誠實陪你把方向理清楚的人，而不是一句空頭保證，那我們會很合拍。
+
 ## 諮詢者怎麼說
 
 以下是求職者在履歷健診與諮詢後留下的部分回饋（已隱去姓名），平均滿意度 4.9 / 5。
@@ -89,6 +99,6 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
 
 想預約，就來 **[預約一對一諮詢](https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform)**。
 
-還在猶豫、有問題想先問，也可以加我的 **[LINE](https://lin.ee/r5T1tmj)** 聊聊，或來信 **contact@afeicareer.com**，也可以私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。
+還在猶豫、有問題想先問，也可以加我的 **[LINE](https://lin.ee/vbJEVGS)** 聊聊，或來信 **contact@afeicareer.com**，也可以私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。
 
 護理職涯路上，不孤單。
