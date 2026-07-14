@@ -93,6 +93,14 @@ if (!ogImageUrl && config.features.dynamicOgImage) {
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
+
+// H1 顯示用：標題若含全形問號、且問號不在結尾，於第一個問號後換行，
+// 讓「提問」與後面的內容分成兩行（純顯示，SEO / RSS / OG 仍用原始 title）
+const _qIdx = title.indexOf("？");
+const titleHtml =
+  _qIdx > -1 && _qIdx < title.length - 1
+    ? `${title.slice(0, _qIdx + 1)}<br />${title.slice(_qIdx + 1)}`
+    : title;
 ---
 
 <PostLayout
@@ -117,9 +125,8 @@ const ogImage = ogImageUrl
     <h1
       style={{ viewTransitionName: toTransitionName(title) }}
       class="text-accent inline-block text-2xl font-bold sm:text-3xl"
-    >
-      {title}
-    </h1>
+      set:html={titleHtml}
+    />
 
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
