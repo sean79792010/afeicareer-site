@@ -1,0 +1,36 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const values = await getEntry("pages", "values");
+
+if (!values) {
+  throw new Error(
+    "Missing content entry: `values.md` or `values.mdx` in `src/content/pages/`"
+  );
+}
+
+const { Content } = await render(values);
+---
+
+<Layout
+  title={`${values.data.title} | ${config.site.title}`}
+  description={values.data.description}
+  ogImage={values.data.ogImage}
+  canonicalURL={values.data.canonicalURL}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={values.data.title} class="app-prose">
+    <Content />
+  </Main>
+
+  <Footer />
+</Layout>

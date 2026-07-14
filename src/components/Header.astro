@@ -119,6 +119,14 @@ const isActive = (path: string) => {
         </li>
         <li class="col-span-2">
           <a
+            href={getRelativeLocaleUrl(locale, "values")}
+            class:list={{ "active-nav": isActive("/values") }}
+          >
+            諮詢理念
+          </a>
+        </li>
+        <li class="col-span-2">
+          <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform"
             target="_blank"
             rel="noopener"
