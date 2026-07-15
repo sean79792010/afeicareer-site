@@ -38,8 +38,12 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [
-        remarkToc,
-        [remarkCollapse, { test: "Table of contents" }],
+        // 目錄標題支援中文「目錄」與英文 Table of Contents / TOC
+        [remarkToc, { heading: "目錄|toc|table[ -]of[ -]contents?" }],
+        [
+          remarkCollapse,
+          { test: /目錄|table of contents/i, summary: () => "展開目錄" },
+        ],
       ],
       rehypePlugins: [rehypeCallouts],
     }),
