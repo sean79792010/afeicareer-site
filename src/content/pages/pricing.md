@@ -97,6 +97,6 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
   </a>
 </div>
 
-還在猶豫、有問題想先問，也可以加我的 **[LINE](https://lin.ee/vZ1OTcL)** 聊聊，或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。
+還在猶豫、有問題想先問，也可以加我的 **[LINE](https://lin.ee/vZ1OTcL)** 聊聊，或[來信給我](mailto:contact@afeicareer.com)，也可以私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。
 
 護理職涯路上，不孤單。

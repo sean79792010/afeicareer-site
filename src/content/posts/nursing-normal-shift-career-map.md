@@ -182,7 +182,7 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 - **Instagram / Threads**：[@afeicareer](https://www.instagram.com/afeicareer)
 - **Podcast《職愛護相取暖會客室》**：在職涯路上陪你慢慢聊 — [收聽連結](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
 
-想聊聊你的狀況，也可以加我的 [LINE](https://lin.ee/vZ1OTcL) 或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。護理職涯路上，不孤單。
+想聊聊你的狀況，也可以[來信給我](mailto:contact@afeicareer.com)。護理職涯路上，不孤單。
 
 ## 還在猶豫哪條路適合你？
 

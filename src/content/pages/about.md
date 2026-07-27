@@ -53,9 +53,10 @@ description: "霏霏｜護理師暨職涯諮詢師。8 年醫學中心臨床護�
 
 ## 一起聊聊
 
-想邀約**講座、課程或內容合作**，歡迎從下面任一個管道找到我。
+想邀約**講座、課程或內容合作**，歡迎[直接來信](mailto:contact@afeicareer.com)，或從下面任一個管道找到我。
 
 - 💬 LINE：[加入好友聊聊](https://lin.ee/vZ1OTcL)
 - 📸 Instagram：[@afeicareer](https://www.instagram.com/afeicareer)
 - 🧵 Threads：[@afeicareer](https://www.threads.net/@afeicareer)
 - 🎙️ Podcast：[職愛護相取暖會客室](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
+- ✉️ Email：[寫信給霏霏](mailto:contact@afeicareer.com)
