@@ -42,4 +42,4 @@ description: "霏霏｜護理師暨職涯諮詢師，提供護理職涯講座與
 
 ## 邀約方式
 
-歡迎來信：[contact@afeicareer.com](mailto:contact@afeicareer.com)
+歡迎[來信給我](mailto:contact@afeicareer.com)

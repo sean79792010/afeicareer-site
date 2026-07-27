@@ -1,6 +1,6 @@
 ---
-title: "合作與工作邀約"
-description: "護理師暨職涯諮詢師 霏霏，目前開放講座邀約、職護顧問、內容合作與工作邀請。這裡是找我合作的窗口。"
+title: "合作邀約"
+description: "護理師暨職涯諮詢師 霏霏，目前開放講座邀約、職護顧問、內容合作。這裡是找我合作的窗口。"
 ---
 
 這裡是找我合作、找我談工作的地方。
@@ -38,8 +38,8 @@ description: "護理師暨職涯諮詢師 霏霏，目前開放講座邀約、�
 
 ## 怎麼聯繫我
 
-- 講座 / 課程邀約 → [contact@afeicareer.com](mailto:contact@afeicareer.com)
+- 講座 / 課程邀約 → [來信給我](mailto:contact@afeicareer.com)
 - 一對一諮詢預約 → [預約表單](https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform) 或加官方 [LINE](https://lin.ee/vZ1OTcL)
-- 職護顧問 / 內容合作 / 職缺邀請 → [contact@afeicareer.com](mailto:contact@afeicareer.com)
+- 職護顧問 / 內容合作 → [來信給我](mailto:contact@afeicareer.com)
 
 來信請附單位／品牌名稱、合作形式、主題或職務內容、預計日期、地點或遠端安排；有預算或薪資範圍請一併提供。我會在 3 個工作天內回覆。
