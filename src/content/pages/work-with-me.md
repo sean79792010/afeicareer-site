@@ -38,8 +38,8 @@ description: "護理師暨職涯諮詢師 霏霏，目前開放講座邀約、�
 
 ## 怎麼聯繫我
 
-- 講座 / 課程邀約 → [來信給我](mailto:contact@afeicareer.com)
+- 講座 / 課程邀約 → 加 [LINE](https://lin.ee/vZ1OTcL) 或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)
 - 一對一諮詢預約 → [預約表單](https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform) 或加官方 [LINE](https://lin.ee/vZ1OTcL)
-- 職護顧問 / 內容合作 → [來信給我](mailto:contact@afeicareer.com)
+- 職護顧問 / 內容合作 → 加 [LINE](https://lin.ee/vZ1OTcL) 或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)
 
 來信請附單位／品牌名稱、合作形式、主題或職務內容、預計日期、地點或遠端安排；有預算或薪資範圍請一併提供。我會在 3 個工作天內回覆。
