@@ -39,6 +39,17 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
 - 在學學生（大學、五專）憑學生證享 8 折。
 - 1 節 = 50–60 分鐘（初談為 90 分鐘）；建議每 1–2 週 1 次，保持連續性。
 
+<div class="not-prose my-8 flex justify-center">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform"
+    target="_blank"
+    rel="noopener"
+    class="inline-block rounded-lg bg-accent px-8 py-4 text-lg font-semibold text-accent-foreground no-underline shadow-md hover:opacity-90 transition-opacity"
+  >
+    👉 立即預約一對一諮詢
+  </a>
+</div>
+
 ## 諮詢怎麼進行
 
 1. **了解需求**：確認問題、目前狀況、過往經驗與做過哪些嘗試。
