@@ -75,7 +75,16 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
 
 ## 準備好了嗎？
 
-想預約，就來 **[預約一對一諮詢](https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform)**。
+<div class="not-prose my-8 flex justify-center">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSe5OkVuI7K0KqPcVc69zUpbKTMUxSs9oN6k0ksvoUurW2j7VQ/viewform"
+    target="_blank"
+    rel="noopener"
+    class="inline-block rounded-lg bg-accent px-8 py-4 text-lg font-semibold text-accent-foreground no-underline shadow-md hover:opacity-90 transition-opacity"
+  >
+    👉 立即預約一對一諮詢
+  </a>
+</div>
 
 還在猶豫、有問題想先問，也可以加我的 **[LINE](https://lin.ee/vZ1OTcL)** 聊聊，或來信 **contact@afeicareer.com**，也可以私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer)。
 
