@@ -166,7 +166,9 @@ const titleHtml =
           {faq.map(item => (
             <div class="mt-6">
               <h3>{item.question}</h3>
-              <p>{item.answer}</p>
+              {item.answer.split(/\n\n+/).map(para => (
+                <p set:html={para} />
+              ))}
             </div>
           ))}
         </section>
