@@ -91,6 +91,6 @@ faq:
 
 - **Instagram / Threads**：[@afeicareer](https://www.instagram.com/afeicareer)
 - **Podcast《職愛護相取暖會客室》**：[收聽連結](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
-- **一對一諮詢**：[看方案與預約](/pricing)
+- **一對一諮詢**：[看方案與預約](/pricing/)
 
 想聊聊你的狀況，也可以[來信給我](mailto:contact@afeicareer.com)。護理職涯路上，不孤單。

@@ -20,6 +20,10 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
       posts.filter(({ data }) => data.category === cat.name)
     );
 
+    // 沒有文章的分類不產頁：分類總覽頁對 count === 0 的分類本來就不給連結，
+    // 產出來只會是沒有站內入口的空頁，還會被 sitemap 收進去送給 Google
+    if (categoryPosts.length === 0) return [];
+
     return paginate(categoryPosts, {
       params: { category: getCategorySlug(cat.name) },
       props: { categoryName: cat.name, categoryDesc: cat.description },

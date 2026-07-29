@@ -21,6 +21,9 @@ import config from "./astro-paper.config";
 
 export default defineConfig({
   site: config.site.url,
+  // Cloudflare Pages 會把無尾斜線的網址 308 轉到有尾斜線版本，
+  // 站內連結若不帶尾斜線就會製造多餘的 redirect（GSC 會記成「頁面會重新導向」）
+  trailingSlash: "always",
   integrations: [
     mdx(),
     sitemap({
