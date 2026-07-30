@@ -15,6 +15,36 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 ![護理師站在岔路口，望向診所、學校、居家、辦公室等多元職涯出路](/images/hero-career-map.png)
 
+<!-- ⬇⬇⬇ Phase 1 新增區塊 START ⬇⬇⬇ -->
+
+> **👀 為什麼這篇被 20 萬人看見**
+>
+> 2026 年 7 月 27 日，我把這張地圖的濃縮版發到 Threads。
+> 3 天內湧入 **20 萬瀏覽、2,749 個讚、快 200 則留言、318 次轉發**，並帶來 671 位新讀者加入這條轉職路上的社群。
+>
+> 為什麼會爆？——因為很多護理師是**第一次**看到，護理的可能性比想像的多很多。這篇就是那張地圖的完整版。
+
+## 📍 目錄
+
+先掃過標題，看到有感覺的類別再往下看：
+
+1. [學歷會不會影響：先講一個最多人搞錯的事](#學歷會不會影響先講一個最多人搞錯的事)
+2. [1. 診所護理師：最常見的第一站](#1-診所護理師最常見的第一站)
+3. [2. 公職與學校護理師：最穩定、有保障](#2-公職與學校護理師最穩定有保障)
+4. [3. 長照與居家：需求最大的藍海](#3-長照與居家需求最大的藍海)
+5. [4. 嬰幼兒照護：把專業帶進托育現場](#4-嬰幼兒照護把專業帶進托育現場)
+6. [5. 產後照護：陪媽媽和寶寶度過關鍵期](#5-產後照護陪媽媽和寶寶度過關鍵期)
+7. [6. 健康促進與職業護理：從「治療」轉向「預防」](#6-健康促進與職業護理從治療轉向預防)
+8. [7. 臨床研究與教育：純日班、週休二日](#7-臨床研究與教育純日班週休二日)
+9. [8. 醫院非臨床：留在醫院但脫離第一線](#8-醫院非臨床留在醫院但脫離第一線)
+10. [9. 病歷與資訊管理：安靜、純日班](#9-病歷與資訊管理安靜純日班)
+11. [10. 醫院日班專科：進階但不用大夜](#10-醫院日班專科進階但不用大夜)
+12. [11. 醫療產業與跨界：薪資天花板最高](#11-醫療產業與跨界薪資天花板最高)
+13. [怎麼用這張地圖](#怎麼用這張地圖)
+14. [還在猶豫？下一步這樣走](#還在猶豫下一步這樣走)
+
+<!-- ⬆⬆⬆ Phase 1 新增區塊 END ⬆⬆⬆ -->
+
 輪班把人磨到什麼程度，只有輪過的人懂。大夜接白班、生理時鐘壞掉、跟家人朋友的作息永遠對不上，很多護理師不是不愛這份專業，而是撐不住那個班表。
 
 但「離開輪班」不等於「離開護理」。護理師轉職，其實有一大片正常班的選擇被埋沒了。這幾年我陪不少人聊職涯，發現大家最大的卡點不是不想動，而是**不知道護理師的正常班到底有哪些路**，一想到轉職就一片空白。
@@ -25,7 +55,7 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 所以我把手邊整理的職缺做成這張**護理職涯地圖**：**40 幾種正常班／不輪班的出路**，從最常見的診所，到公職、長照、職護、個管、醫院裡的日班專科，一直到跨界產業。你可以先看完整張圖，找到有感覺的方向，再往下深挖。
 
-## 先講一個最多人搞錯的事：學歷
+## 學歷會不會影響：先講一個最多人搞錯的事
 
 在往下看之前，先把「要不要為了轉職去念二技」講清楚，因為它會影響你怎麼選路：
 
@@ -40,10 +70,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 ## 40 幾條路，點開你有興趣的分類
 
-> 下面 10 大類，點標題就能展開細節。先掃過標題，看到有感覺的再點開細看。
+> 下面 11 大類，點標題就能展開細節。先掃過標題，看到有感覺的再點開細看。
+
+### 1. 診所護理師：最常見的第一站
 
 <details>
-<summary><strong>1. 診所護理師：最常見的第一站</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 診所是護理師找正常班最直覺的選擇，作息規律、離家近。但**不同科別的工作內容差很多**，別以為「診所」都一樣：
 
@@ -58,8 +90,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+<!-- 未來 placeholder：診所護理師深度文完成後，加內鏈 → 📖 更深入了解診所護理師？看 → /posts/clinic-nurse-guide/ -->
+
+### 2. 公職與學校護理師：最穩定、有保障
+
 <details>
-<summary><strong>2. 公職與學校護理師：最穩定、有保障</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 想要作息規律 ＋ 月退保障，公部門是首選：
 
@@ -70,8 +106,14 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+📖 想更深入了解公職？看 → [公職護理師怎麼分？高考分發、醫院公職、衛生所、校護，差在哪](/posts/civil-service-nurse-guide/)
+
+<!-- 未來 placeholder：校護獨立深度文完成後，加 → 📖 校護怎麼選、公私立差在哪？→ /posts/school-nurse-guide/ -->
+
+### 3. 長照與居家：需求最大的藍海
+
 <details>
-<summary><strong>3. 長照與居家：需求最大的藍海</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 長照 2.0 人力缺口龐大，多為日班或彈性工時：
 
@@ -81,8 +123,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+<!-- 未來 placeholder：居家護理師深度文完成後，加 → 📖 居家護理師到底在做什麼？→ /posts/home-care-nurse-guide/ -->
+
+### 4. 嬰幼兒照護：把專業帶進托育現場
+
 <details>
-<summary><strong>4. 嬰幼兒照護：把專業帶進托育現場</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 托嬰中心、幼兒園依法可（或應）配置護理人員，多為正常日班：
 
@@ -93,8 +139,10 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+### 5. 產後照護：陪媽媽和寶寶度過關鍵期
+
 <details>
-<summary><strong>5. 產後照護：陪媽媽和寶寶度過關鍵期</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 從月子中心到居家哺乳，產後這 2 個月是媽媽與寶寶最需要陪伴的階段，護理背景在這個場域特別有優勢：
 
@@ -104,8 +152,10 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+### 6. 健康促進與職業護理：從「治療」轉向「預防」
+
 <details>
-<summary><strong>6. 健康促進與職業護理：從「治療」轉向「預防」</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 這一類把重心從治病轉到預防與教育，是很多人嚮往的轉型方向：
 
@@ -115,8 +165,14 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+📖 想更深入了解職護？看 → [只有臨床經驗，職護履歷怎麼寫（臨床技能翻譯法）](/posts/occupational-health-nurse-resume/)
+
+<!-- 未來 placeholder：健檢職護深度文完成後，加 → 📖 健檢職護在做什麼？→ /posts/health-checkup-nurse-guide/ -->
+
+### 7. 臨床研究與教育：純日班、週休二日
+
 <details>
-<summary><strong>7. 臨床研究與教育：純日班、週休二日</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 想遠離病房又想用到臨床底子：
 
@@ -126,8 +182,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+<!-- 未來 placeholder：CRC/藥廠深度文完成後，加 → 📖 CRC 到底在做什麼？→ /posts/crc-guide/ -->
+
+### 8. 醫院非臨床：留在醫院但脫離第一線
+
 <details>
-<summary><strong>8. 醫院非臨床：留在醫院但脫離第一線</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 不想離開醫院體系，但想擺脫輪班：
 
@@ -140,8 +200,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+<!-- 未來 placeholder：個管師深度文完成後，加 → 📖 個管師怎麼分、要怎麼選？→ /posts/case-manager-guide/ -->
+
+### 9. 病歷與資訊管理：安靜、純日班
+
 <details>
-<summary><strong>9. 病歷與資訊管理：安靜、純日班</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 適合細心、能久坐專注的人：
 
@@ -151,8 +215,10 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+### 10. 醫院日班專科：進階但不用大夜
+
 <details>
-<summary><strong>10. 醫院日班專科：進階但不用大夜</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 醫院裡的進階臨床，需專科訓練：
 
@@ -162,8 +228,12 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
+📖 想看更多院內臨床科別選擇？→ [院內臨床科別全景地圖](/posts/nursing-clinical-departments-map/)
+
+### 11. 醫療產業與跨界：薪資天花板最高
+
 <details>
-<summary><strong>11. 醫療產業與跨界：薪資天花板最高</strong></summary>
+<summary><strong>展開內容</strong></summary>
 
 把護理帶進產業，收入上限最高，但多伴隨業績或進度壓力：
 
@@ -172,6 +242,8 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 - **醫美諮詢師**：療程規劃、成交與客戶關係，業績導向、收入看成交。
 
 </details>
+
+💰 想聊薪水？→ [護理師談薪水指南](/posts/nurse-salary-negotiation/)
 
 ---
 
@@ -189,17 +261,41 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 ---
 
-如果這篇幫你打開了一點方向，歡迎追蹤我，我會持續分享護理職涯的真實資訊：
+<!-- ⬇⬇⬇ Phase 1 強化 CTA 區塊 START ⬇⬇⬇ -->
 
-- **Instagram / Threads**：[@afeicareer](https://www.instagram.com/afeicareer)
-- **Podcast《職愛護相取暖會客室》**：在職涯路上陪你慢慢聊 — [收聽連結](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
+## 還在猶豫？下一步這樣走
 
-想聊聊你的狀況，也可以[來信給我](mailto:contact@afeicareer.com)。護理職涯路上，不孤單。
+看完這 40+ 條路，你可能有 3 種狀態，對應 3 種下一步：
 
-## 還在猶豫哪條路適合你？
+### 🎯 已經有 2-3 個方向、想選出最適合的一條
 
-這 40 幾條路看得眼花撩亂？我做了一份「護理師轉職方向自我檢核清單」——用幾個問題，幫你從 40 幾條收斂到 2～3 條真正適合你的方向。
+做 **3 分鐘測驗**，把 40+ 條收斂到 2-3 條 → [點這裡做測驗](/quiz/)
 
-👉 [點這裡做測驗](/quiz/)（花 2 分鐘，幫你收斂到 2-3 條適合你的方向）
+### 💬 有想法但卡卡的、想找人聊聊
 
-想看每條路**完整的薪資與學歷門檻**、或想針對你自己的狀況一起討論，那就是[一對一諮詢](/pricing/)的內容——我會用最新資料、結合你的情況，給你最準的建議。
+- 加我 **官方 LINE** 私訊 → [lin.ee/vZ1OTcL](https://lin.ee/vZ1OTcL)
+- **IG / Threads** 私訊 → [@afeicareer](https://www.instagram.com/afeicareer)
+- 想深度聊完整方向與具體行動 → [一對一諮詢](/pricing/)
+
+### 🎧 想在通勤時慢慢聽別人的轉職故事
+
+**Podcast《職愛護相取暖會客室》**每週一集，職涯路上陪你慢慢聊。
+[Firstory 收聽連結](https://open.firstory.me/user/cmp1827nk0axa01wd13kt3mpi/platforms)
+
+---
+
+**護理職涯路上，不孤單。** 有任何問題，隨時來訊 🌿
+
+<!-- ⬆⬆⬆ Phase 1 強化 CTA 區塊 END ⬆⬆⬆ -->
+
+<!-- ⬇⬇⬇ 未來 Phase 2 placeholder：相關深度文 grid（要等 <BackToMap /> component 做好、或用 Astro getCollection 篩 category）⬇⬇⬇
+
+📚 護理轉職相關深度文：
+- [公職護理師怎麼分](/posts/civil-service-nurse-guide/)
+- [護理師談薪水指南](/posts/nurse-salary-negotiation/)
+- [院內臨床科別全景地圖](/posts/nursing-clinical-departments-map/)
+- [職護履歷怎麼寫](/posts/occupational-health-nurse-resume/)
+- [護理師履歷怎麼寫](/posts/nursing-resume-writing-guide/)
+- [只有診所、門診經驗，算臨床嗎](/posts/clinic-experience-counts/)
+
+⬆⬆⬆ Phase 2 placeholder END ⬆⬆⬆ -->
