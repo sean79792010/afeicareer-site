@@ -90,7 +90,8 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
-<!-- 未來 placeholder：診所護理師深度文完成後，加內鏈 → 📖 更深入了解診所護理師？看 → /posts/clinic-nurse-guide/ -->
+📄 **診所護理師深度文即將上線 → 敬請期待**
+<!-- 未來 placeholder：診所護理師深度文完成後，改為內鏈 → /posts/clinic-nurse-guide/ -->
 
 ### 2. 公職與學校護理師：最穩定、有保障
 
@@ -108,7 +109,8 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 📖 想更深入了解公職？看 → [公職護理師怎麼分？高考分發、醫院公職、衛生所、校護，差在哪](/posts/civil-service-nurse-guide/)
 
-<!-- 未來 placeholder：校護獨立深度文完成後，加 → 📖 校護怎麼選、公私立差在哪？→ /posts/school-nurse-guide/ -->
+📄 **校護（學校護理師）深度文即將上線 → 敬請期待**
+<!-- 未來 placeholder：校護獨立深度文完成後，改為內鏈 → /posts/school-nurse-guide/ -->
 
 ### 3. 長照與居家：需求最大的藍海
 
@@ -167,7 +169,11 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 📖 想更深入了解職護？看 → [只有臨床經驗，職護履歷怎麼寫（臨床技能翻譯法）](/posts/occupational-health-nurse-resume/)
 
-<!-- 未來 placeholder：健檢職護深度文完成後，加 → 📖 健檢職護在做什麼？→ /posts/health-checkup-nurse-guide/ -->
+📄 **職護（勞工健康服務護理人員）完整職業深度文即將上線 → 敬請期待**
+<!-- 未來 placeholder：職護深度文（非履歷版）完成後，改為內鏈 → /posts/occupational-health-nurse-guide/ -->
+
+📄 **健檢護深度文即將上線 → 敬請期待**
+<!-- 未來 placeholder：健檢職護深度文完成後，改為內鏈 → /posts/health-checkup-nurse-guide/ -->
 
 ### 7. 臨床研究與教育：純日班、週休二日
 
@@ -270,6 +276,10 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 ### 🎯 已經有 2-3 個方向、想選出最適合的一條
 
 做 **3 分鐘測驗**，把 40+ 條收斂到 2-3 條 → [點這裡做測驗](/quiz/)
+
+### 📝 已經有想投的職缺、想把履歷準備好
+
+看 → [護理師履歷怎麼寫？讓人資第一眼就想約你面試](/posts/nursing-resume-writing-guide/)
 
 ### 💬 有想法但卡卡的、想找人聊聊
 
