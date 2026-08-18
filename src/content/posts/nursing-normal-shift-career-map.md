@@ -161,10 +161,9 @@ description: 護理師想轉職、找正常班？這篇整理 40+ 種不輪班�
 
 </details>
 
-📖 想更深入了解職護？看 → [只有臨床經驗，職護履歷怎麼寫（臨床技能翻譯法）](/posts/occupational-health-nurse-resume/)
+📖 想更深入了解職護？看 → [想成為職護，你必須知道的事：資格 / 工作內容 / 薪水完整指南](/posts/occupational-health-nurse-guide/)
 
-📄 **職護（勞工健康服務護理人員）完整職業深度文即將上線 → 敬請期待**
-<!-- 未來 placeholder：職護深度文（非履歷版）完成後，改為內鏈 → /posts/occupational-health-nurse-guide/ -->
+📖 已經確定要投職護、卡在履歷？看 → [只有臨床經驗，職護履歷怎麼寫（臨床技能翻譯法）](/posts/occupational-health-nurse-resume/)
 
 📖 想更深入了解健檢中心護理師？看 → [健檢中心護理師是什麼？工作內容 / 薪水 / 適合誰全整理](/posts/health-checkup-nurse-guide/)
 
