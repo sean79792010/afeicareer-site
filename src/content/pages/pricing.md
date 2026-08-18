@@ -35,7 +35,7 @@ description: "霏霏 護理職涯諮詢的方案與定價：單節體驗、4 次
 
 ## 費用與須知
 
-- 微光計畫｜陪跑方案的費用依需求議定，請加官方 LINE 或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer) 詢問。
+- 微光計畫｜陪跑方案的費用依需求議定，請加[官方 LINE](https://lin.ee/vZ1OTcL) 或私訊 IG／Threads [@afeicareer](https://www.instagram.com/afeicareer) 詢問。
 - 在學學生（大學、五專）憑學生證享 8 折。
 - 1 節 = 50–60 分鐘（初談為 90 分鐘）；建議每 1–2 週 1 次，保持連續性。
 
