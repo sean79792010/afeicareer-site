@@ -70,6 +70,8 @@ const {
   tags,
   hideEditPost,
   faq,
+  sources,
+  sourcesNote,
 } = post.data;
 
 const { Content } = await render(post);
@@ -171,6 +173,26 @@ const titleHtml =
               ))}
             </div>
           ))}
+        </section>
+      )
+    }
+
+    {
+      sources && sources.length > 0 && (
+        <section
+          id="sources"
+          aria-labelledby="sources-heading"
+          class="app-prose max-w-app mt-12 w-full"
+        >
+          <h2 id="sources-heading" class="text-accent">
+            資料來源
+          </h2>
+          {sourcesNote && <p class="mt-2">{sourcesNote}</p>}
+          <ul class="mt-4">
+            {sources.map(item => (
+              <li set:html={item} />
+            ))}
+          </ul>
         </section>
       )
     }

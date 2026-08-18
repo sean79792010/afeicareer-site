@@ -29,6 +29,9 @@ const posts = defineCollection({
       faq: z
         .array(z.object({ question: z.string(), answer: z.string() }))
         .optional(),
+      // 資料來源：渲染在文末「常見問題」之後（寫在正文裡會排在 FAQ 前面）。允許 HTML 連結。
+      sources: z.array(z.string()).optional(),
+      sourcesNote: z.string().optional(),
     }),
 });
 
