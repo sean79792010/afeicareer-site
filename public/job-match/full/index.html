@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38352E">
+<meta name="robots" content="noindex,nofollow">
+<title>護理師職缺配對（完整版）｜霏霏 護理職涯諮詢</title>
+<meta name="description" content="加入性格、能力、價值觀的完整版職缺配對。">
+<!--
+  ⚠️ 配對邏輯目前有兩份：這裡與 ../index.html（概要版）。
+     改年資分層、薪資判斷、班別篩選時，兩邊都要改。
+     等版本穩定後再抽成共用檔。
+-->
+<style>
+  :root{
+    --ground:#F1EDE4; --paper:#FCFAF5; --ink:#38352E; --muted:#8C867A;
+    --sage:#7E9078; --sage-deep:#5C6E56; --sage-tint:#E9EFE4;
+    --rose:#C6A79E; --rose-tint:#F3E9E4; --line:#E4DECF;
+    --amber:#A87B3C; --amber-tint:#F4EADA;
+    --shadow:0 1px 2px rgba(70,64,50,.06),0 8px 24px rgba(70,64,50,.07);
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+    --serif:"Songti TC","Noto Serif TC","Source Han Serif TC",serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;padding:0 16px 48px}
+  .wrap{max-width:620px;margin:0 auto}
+  header{text-align:center;padding:28px 0 8px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--sage-deep)}
+  h1{font-family:var(--serif);font-size:26px;font-weight:600;margin:6px 0 6px;text-wrap:balance}
+  header > p{color:var(--muted);font-size:14px;margin:0}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px 20px;margin-top:18px}
+
+  fieldset{border:none;padding:0;margin:0 0 22px}
+  legend{font-size:15.5px;font-weight:700;padding:0;margin-bottom:4px}
+  .sub{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+  .row{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:9px 13px;font-family:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.4}
+  .chip:hover{border-color:var(--sage);background:var(--sage-tint)}
+  .chip[aria-pressed="true"]{border-color:var(--sage);background:var(--sage-tint);font-weight:600}
+  .chip:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+  input[type=number]{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:11px 13px;font-family:inherit;font-size:15px;color:var(--ink)}
+  input:focus{outline:2px solid var(--sage);outline-offset:1px;border-color:var(--sage)}
+  .pair{display:flex;gap:10px}
+  .pair > div{flex:1}
+  .pair label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+
+  /* 性格二選一 */
+  .ab{display:flex;flex-direction:column;gap:12px}
+  .ab .q{font-size:14.5px;font-weight:600;margin:0 0 7px}
+  .ab .opts{display:flex;gap:8px}
+  .ab .opts .chip{flex:1;text-align:center;font-size:14px;padding:11px 10px}
+
+  .btn{display:inline-block;background:var(--sage);color:#fff;text-decoration:none;border:none;border-radius:11px;padding:13px 24px;font-family:inherit;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:var(--shadow)}
+  .btn:hover{background:var(--sage-deep)}
+  .btn.ghost{background:none;color:var(--sage-deep);border:1.5px solid var(--sage);box-shadow:none}
+  .btn.block{display:block;width:100%;text-align:center}
+
+  .tier{margin-top:28px}
+  .tier h2{font-family:var(--serif);font-size:20px;font-weight:600;margin:0 0 2px}
+  .t-open   h2{color:var(--sage-deep)}
+  .t-ajar   h2{color:var(--amber)}
+  .t-closed h2{color:var(--muted)}
+  .job{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;margin-top:10px}
+  .t-open   .job{border-color:#C3D5BB}
+  .t-ajar   .job{border-color:#E4D2B4}
+  .t-closed .job{border-style:dashed;background:none}
+
+  .job h3{margin:0 0 6px;font-size:16.5px;font-weight:700}
+  .job .meta{font-size:13px;color:var(--muted);margin:0 0 8px}
+  .job .meta b{color:var(--ink);font-weight:600}
+  .job .meta .ok{color:var(--sage-deep);font-weight:600;white-space:nowrap}
+  .job .why{margin:0;font-size:14px;color:#5c584e;line-height:1.6}
+  .job .gap{margin:9px 0 0;font-size:13.5px;background:var(--amber-tint);border-radius:9px;padding:9px 11px;line-height:1.55}
+  .job .gap b{color:var(--amber)}
+  .more{background:none;border:none;color:var(--sage-deep);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;padding:9px 0 0}
+  .more:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+  .detail{display:none;margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  .detail.open{display:block}
+  .detail dl{margin:0}
+  .detail dt{font-size:12.5px;color:var(--muted);font-weight:700;margin-top:10px}
+  .detail dd{margin:2px 0 0;font-size:14px;line-height:1.6;white-space:pre-line}
+
+  .profile{background:var(--sage-tint);border-radius:14px;padding:16px 18px;margin-top:18px}
+  .profile h2{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 8px}
+  .profile p{margin:0;font-size:14.5px;line-height:1.7}
+
+  .cta{margin-top:26px;background:var(--sage-tint);border-radius:14px;padding:20px 18px;text-align:center}
+  .cta h2{font-family:var(--serif);font-size:19px;margin:0 0 8px}
+  .cta p{margin:0 0 14px;font-size:14.5px;line-height:1.6}
+  .cta .btn{margin:0 4px 8px}
+  .note{background:var(--rose-tint);border-radius:12px;padding:13px 15px;font-size:13.5px;line-height:1.6;margin-top:18px}
+  .again{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;cursor:pointer;display:block;margin:20px auto 0}
+  .foot{color:var(--muted);font-size:11.5px;text-align:center;margin-top:26px;line-height:1.7}
+  a.ilink{color:var(--sage-deep);font-weight:600;text-decoration:none;border-bottom:1px solid var(--sage)}
+  .empty{font-size:14px;color:var(--muted);margin:10px 0 0;line-height:1.6}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">護理師職缺配對・完整版</div>
+    <h1>你現在的條件，能推開哪幾扇門？</h1>
+    <p>比概要版多問性格、能力，配出來的東西也給到底</p>
+  </header>
+
+  <div class="card" id="card"></div>
+
+  <p class="foot">配對依據是各職種公開的資格條件與薪資區間，<br>不代表你家附近現在有這個缺。實際職缺還是要到人力銀行查。<br>填的內容不會上傳，關掉就消失。｜霏霏 護理職涯諮詢</p>
+</div>
+
+<script src="../jobs-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var LINE="https://lin.ee/vZ1OTcL";
+  var PRICING="/pricing/";
+  var MAP="/posts/nursing-normal-shift-career-map/";
+
+  var card=document.getElementById("card");
+  var state={years:"",months:"",edu:"",certs:[],shifts:[],salary:"",
+             avoid:[],value:[],skills:[],traits:{}};
+
+  var CERTS=[
+    {k:"健檢",label:"勞工體格及健康檢查護理人員訓練",keys:["勞工體格","體格與健康檢查","體格及健康檢查"]},
+    {k:"職護",label:"勞工健康服務護理人員訓練（52 小時）",keys:["勞工健康服務","52 小時","52小時"]},
+    {k:"長照",label:"長照 Level 課程",keys:["長照","照顧服務員","單一級"]},
+    {k:"個管",label:"個案管理人員培訓",keys:["個案管理","個管"]},
+    {k:"CDE",label:"糖尿病衛教師 CDE",keys:["CDE","糖尿病衛教"]},
+    {k:"GCP",label:"GCP 臨床試驗訓練",keys:["GCP","臨床試驗"]},
+    {k:"泌乳",label:"泌乳顧問 IBCLC",keys:["IBCLC","泌乳"]},
+    {k:"保母",label:"保母技術士",keys:["保母","托育人員"]},
+    {k:"分類",label:"疾病分類師證照",keys:["疾病分類"]},
+    {k:"急救",label:"ACLS／BLS",keys:["ACLS","BLS"]}
+  ];
+  var EDUS=["專科／五專","二技","大學","碩士以上"];
+  var SHIFTS=[
+    {k:"純白班",label:"純白班就好"},
+    {k:"白班為主",label:"白班為主，偶爾彈性可以"},
+    {k:"白班+夜診假日",label:"夜診或假日班可以"},
+    {k:"白班可能有 on-call",label:"on-call 可以"},
+    {k:"外勤團隊",label:"往外跑可以"},
+    {k:"接案自由",label:"想接案、自己排時間"},
+    {k:"月子輪班為主",label:"月子中心那種輪班可以"}
+  ];
+  var AVOID=[
+    {k:"oncall",label:"隨時被 call"},
+    {k:"shift",label:"輪班"},
+    {k:"sales",label:"被追業績"},
+    {k:"alone",label:"自己一個人扛判斷"},
+    {k:"exam",label:"評鑑、稽核"},
+    {k:"drive",label:"一直跑外面"}
+  ];
+  var VALUES=[
+    {k:"穩定",label:"穩定"},
+    {k:"時間",label:"時間自由"},
+    {k:"錢",label:"薪水"},
+    {k:"成長",label:"專業成長"},
+    {k:"助人",label:"直接幫到人"},
+    {k:"傳承",label:"教學傳承"},
+    {k:"家庭",label:"顧得到家"},
+    {k:"自主",label:"自己決定怎麼做"},
+    {k:"社會",label:"做的事對社會有意義"}
+  ];
+  // 能力自評 → 對到職缺的「所需能力」與「專業技能」
+  var SKILLS=[
+    {k:"衛教",label:"衛教與溝通",keys:["衛教","溝通","諮詢","說明","健康教育"]},
+    {k:"技術",label:"技術操作",keys:["操作","儀器","穿刺","注射","採檢","技術"]},
+    {k:"文書",label:"文書與資料整理",keys:["文書","資料","紀錄","報告","編碼","行政"]},
+    {k:"教學",label:"教學授課",keys:["教學","授課","簡報","指導","課程設計"]},
+    {k:"判斷",label:"獨立判斷",keys:["判斷","評估","分流","決策"]},
+    {k:"協調",label:"跨部門協調",keys:["協調","跨部門","整合","聯繫","團隊協作"]},
+    {k:"應變",label:"危機應變",keys:["應變","急救","緊急","突發","處置"]},
+    {k:"英文",label:"英文",keys:["英文","外語","English"]},
+    {k:"分析",label:"數據分析",keys:["分析","統計","判讀","數據"]},
+    {k:"個管",label:"個案追蹤管理",keys:["個案管理","追蹤","照顧計畫","CarePlan"]}
+  ];
+  // 性格五題，每題兩端各自對應職缺特質裡的用詞
+  var TRAITS=[
+    {k:"pace", q:"一整天下來，哪一種你比較不累？",
+     a:{label:"待在固定位置專心做事", keys:["專注","細心","耐心","靜態","內向","審慎","久坐"]},
+     b:{label:"到處跑、一直換場景",   keys:["外勤","體力","跑點","機動","活動量","不無聊","移動"]}},
+    {k:"focus", q:"你比較想把時間花在？",
+     a:{label:"跟人互動", keys:["溝通","衛教","陪伴","關懷","親和","表達","服務","同理","傾聽"]},
+     b:{label:"處理資料跟事情", keys:["資料","數據","報告","判讀","文書","系統","邏輯","編碼"]}},
+    {k:"structure", q:"哪種工作方式讓你比較安心？",
+     a:{label:"照既定流程走", keys:["流程","規範","標準","嚴謹","法規","制度","品管","稽核"]},
+     b:{label:"看狀況臨場調整", keys:["應變","突發","彈性","機動","變化","創新"]}},
+    {k:"solo", q:"要做決定的時候，你偏好？",
+     a:{label:"自己判斷、自己負責", keys:["獨立","自主","自律","單獨","獨立判斷","獨立作業"]},
+     b:{label:"跟人討論過再決定", keys:["團隊","協作","合作","跨部門","共同","團隊協作"]}},
+    {k:"depth", q:"如果只能選一種，你想要？",
+     a:{label:"一個領域鑽深", keys:["專精","深耕","專業","研究","精進","專科"]},
+     b:{label:"接觸各種不同的事", keys:["多元","跨界","不同產業","各種","廣","跨領域"]}}
+  ];
+
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+  /* ---------- 表單 ---------- */
+  function chips(id,list,sel,labelOf,valOf){
+    return '<div class="row" id="'+id+'">'+list.map(function(x){
+      var v=valOf(x);
+      return '<button type="button" class="chip" data-v="'+esc(v)+'" aria-pressed="'+
+             (sel.indexOf(v)>=0)+'">'+esc(labelOf(x))+'</button>';
+    }).join("")+'</div>';
+  }
+
+  function form(){
+    card.innerHTML=
+      '<fieldset><legend>你的臨床年資</legend>'+
+      '<p class="sub">還沒上過臨床就兩格都填 0</p>'+
+      '<div class="pair">'+
+        '<div><label for="y">幾年</label><input id="y" type="number" min="0" max="40" inputmode="numeric" value="'+esc(state.years)+'"></div>'+
+        '<div><label for="m">又幾個月</label><input id="m" type="number" min="0" max="11" inputmode="numeric" value="'+esc(state.months)+'"></div>'+
+      '</div></fieldset>'+
+
+      '<fieldset><legend>學歷</legend>'+
+      chips("edu",EDUS,[state.edu],function(e){return e;},function(e){return e;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>手上已經有的證照或訓練</legend>'+
+      '<p class="sub">護理師執照就不用勾了，這裡是問額外的。沒有就跳過</p>'+
+      chips("cert",CERTS,state.certs,function(c){return c.label;},function(c){return c.k;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>你能接受的班別</legend>'+
+      '<p class="sub">可以複選，選越多配到的越多</p>'+
+      chips("shift",SHIFTS,state.shifts,function(s){return s.label;},function(s){return s.k;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>期望月薪</legend>'+
+      '<p class="sub">沒有特別想法就留空</p>'+
+      '<input id="sal" type="number" min="0" step="1000" inputmode="numeric" placeholder="例如 42000" value="'+esc(state.salary)+'"></fieldset>'+
+
+      '<fieldset><legend>你受不了什麼</legend>'+
+      '<p class="sub">選了就幫你避開</p>'+
+      chips("avoid",AVOID,state.avoid,function(a){return a.label;},function(a){return a.k;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>你做起來比較順的事</legend>'+
+      '<p class="sub">選 2 到 4 個，不用謙虛也不用勉強</p>'+
+      chips("skill",SKILLS,state.skills,function(s){return s.label;},function(s){return s.k;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>工作裡你最在意的</legend>'+
+      '<p class="sub">最多選 3 個</p>'+
+      chips("value",VALUES,state.value,function(v){return v.label;},function(v){return v.k;})+
+      '</fieldset>'+
+
+      '<fieldset><legend>五個小問題</legend>'+
+      '<p class="sub">沒有對錯，選當下比較有感覺的那個。不確定就跳過</p>'+
+      '<div class="ab">'+TRAITS.map(function(t){
+        return '<div><p class="q">'+esc(t.q)+'</p><div class="opts" data-t="'+t.k+'">'+
+          '<button type="button" class="chip" data-v="a" aria-pressed="'+(state.traits[t.k]==="a")+'">'+esc(t.a.label)+'</button>'+
+          '<button type="button" class="chip" data-v="b" aria-pressed="'+(state.traits[t.k]==="b")+'">'+esc(t.b.label)+'</button>'+
+        '</div></div>';
+      }).join("")+'</div></fieldset>'+
+
+      '<button class="btn block" id="go">看看我能推開哪幾扇</button>';
+
+    bindSingle("edu","edu");
+    bindMulti("cert","certs");
+    bindMulti("shift","shifts");
+    bindMulti("avoid","avoid");
+    bindMulti("skill","skills",4);
+    bindMulti("value","value",3);
+    bindTraits();
+    document.getElementById("go").onclick=submit;
+  }
+
+  function bindSingle(id,key){
+    var box=document.getElementById(id);
+    box.onclick=function(e){
+      var b=e.target.closest(".chip"); if(!b) return;
+      state[key]=b.dataset.v;
+      [].forEach.call(box.querySelectorAll(".chip"),function(c){
+        c.setAttribute("aria-pressed", String(c===b));});
+    };
+  }
+  function bindMulti(id,key,max){
+    var box=document.getElementById(id);
+    box.onclick=function(e){
+      var b=e.target.closest(".chip"); if(!b) return;
+      var v=b.dataset.v, i=state[key].indexOf(v);
+      if(i>=0){ state[key].splice(i,1); }
+      else{
+        if(max && state[key].length>=max) return;
+        state[key].push(v);
+      }
+      b.setAttribute("aria-pressed", String(i<0));
+    };
+  }
+  function bindTraits(){
+    [].forEach.call(document.querySelectorAll(".ab .opts"),function(box){
+      box.onclick=function(e){
+        var b=e.target.closest(".chip"); if(!b) return;
+        var t=box.dataset.t, v=b.dataset.v;
+        // 再點一次同一個就取消
+        state.traits[t] = (state.traits[t]===v) ? null : v;
+        [].forEach.call(box.querySelectorAll(".chip"),function(c){
+          c.setAttribute("aria-pressed", String(state.traits[t]===c.dataset.v));});
+      };
+    });
+  }
+
+  function submit(){
+    state.years=document.getElementById("y").value;
+    state.months=document.getElementById("m").value;
+    state.salary=document.getElementById("sal").value;
+    render(match());
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  /* ---------- 配對 ---------- */
+  var AVOID_RULES={
+    oncall:{shift:["白班可能有 on-call"]},
+    shift:{shift:["月子輪班為主"]},
+    sales:{text:["業績"]},
+    alone:{text:["獨立到宅","獨立判斷","獨立執行"]},
+    exam:{text:["評鑑","稽核"]},
+    drive:{shift:["外勤團隊"]}
+  };
+  var VALUE_KEYS={
+    "穩定":["穩定","保障","月退","公職"],
+    "時間":["彈性","時間","自由","寒暑假","下班"],
+    "錢":["收入","薪資","獎金","高薪","議價"],
+    "成長":["成長","專業","進修","學習","深耕"],
+    "助人":["助人","陪伴","關懷","照顧","服務"],
+    "傳承":["教學","傳承","培育","指導"],
+    "家庭":["家庭","顧家","通勤","在地"],
+    "自主":["自主","獨立","自己安排","接案"],
+    "社會":["社會","公共","社區","公衛","公益"]
+  };
+
+  function userMonths(){
+    return (parseInt(state.years,10)||0)*12 + (parseInt(state.months,10)||0);
+  }
+  function yearText(m){
+    var y=Math.floor(m/12), r=m%12, s=[];
+    if(y) s.push(y+" 年");
+    if(r) s.push(r+" 個月");
+    return s.length ? s.join(" ") : "0 個月";
+  }
+
+  function match(){
+    var um=userMonths();
+    var wantSal=parseInt(state.salary,10)||0;
+    var out=[], skippedByShift=0;
+
+    window.JOBS.forEach(function(j){
+      if(state.shifts.length && state.shifts.indexOf(j["班別"])<0){ skippedByShift++; return; }
+
+      var killed=false;
+      state.avoid.forEach(function(a){
+        var r=AVOID_RULES[a]; if(!r||killed) return;
+        if(r.shift && r.shift.indexOf(j["班別"])>=0){ killed=true; return; }
+        if(r.text){
+          var blob=j["工作內容"]+j["薪資範圍"]+j["會遇到的挑戰"]+j["壓力型態"]+j["實務臨床年資"];
+          r.text.forEach(function(t){ if(blob.indexOf(t)>=0) killed=true; });
+        }
+      });
+      if(killed) return;
+
+      var mm=j._minMonths, why=[], gap=[], tier, need=0;
+
+      if(mm===0){
+        tier=1; why.push("這條路不看年資，新手就能投");
+      }else if(mm!==null && mm<=um){
+        tier=1; why.push("年資門檻你已經到了（這個職種通常要 "+yearText(mm)+"）");
+      }else if(mm===null){
+        tier=2; need=13;
+        gap.push("這個職種沒有寫死年資門檻，看機構自己怎麼收，值得直接問問看");
+      }else{
+        need=mm-um;
+        tier = need<=24 ? 2 : 3;
+        gap.push("還差 "+yearText(need)+"的臨床年資（這個職種通常要 "+yearText(mm)+"）");
+      }
+
+      var salOK=false;
+      if(wantSal && j._salaryHigh){
+        if(j._salaryHigh>=wantSal){ salOK=true; }
+        else{
+          if(tier===1) tier=2;
+          gap.push("薪水可能到不了 "+wantSal.toLocaleString()+
+                   "（這個職種大約 "+j._salaryLow.toLocaleString()+"–"+j._salaryHigh.toLocaleString()+"）");
+        }
+      }
+
+      // 價值觀
+      var hit=[];
+      state.value.forEach(function(v){
+        var blob=j["適合價值觀"]+j["優點"];
+        (VALUE_KEYS[v]||[]).forEach(function(k){
+          if(blob.indexOf(k)>=0 && hit.indexOf(v)<0) hit.push(v);
+        });
+      });
+      if(hit.length) why.push("跟你在意的「"+hit.join("、")+"」對得上");
+
+      // 證照
+      var certHit=[];
+      state.certs.forEach(function(ck){
+        var c=null;
+        CERTS.forEach(function(x){ if(x.k===ck) c=x; });
+        if(!c) return;
+        var blob=j["要考取哪些證照"]+j["證照考試資格"];
+        c.keys.forEach(function(k){
+          if(blob.indexOf(k)>=0 && certHit.indexOf(c.label)<0) certHit.push(c.label);
+        });
+      });
+      if(certHit.length) why.push("你手上的「"+certHit.join("、")+"」正好是這條路要的");
+
+      // 能力
+      var skillHit=[];
+      state.skills.forEach(function(sk){
+        var s=null;
+        SKILLS.forEach(function(x){ if(x.k===sk) s=x; });
+        if(!s) return;
+        var blob=j["所需能力"]+j["專業技能"]+j["工作內容"];
+        s.keys.forEach(function(k){
+          if(blob.indexOf(k)>=0 && skillHit.indexOf(s.label)<0) skillHit.push(s.label);
+        });
+      });
+      if(skillHit.length) why.push("你順的「"+skillHit.join("、")+"」剛好是這份工作天天在用的");
+
+      // 性格
+      var traitHit=[], traitMiss=[];
+      TRAITS.forEach(function(t){
+        var pick=state.traits[t.k]; if(!pick) return;
+        var blob=j["適合特質"]+j["壓力型態"]+j["優點"];
+        var mine=t[pick], other=t[pick==="a"?"b":"a"];
+        var meHit=mine.keys.some(function(k){ return blob.indexOf(k)>=0; });
+        var otHit=other.keys.some(function(k){ return blob.indexOf(k)>=0; });
+        if(meHit && !otHit) traitHit.push(mine.label);
+        else if(otHit && !meHit) traitMiss.push(other.label);
+      });
+      if(traitHit.length) why.push("工作型態偏「"+traitHit.join("、")+"」，跟你選的一樣");
+
+      var score=hit.length*6+certHit.length*12+skillHit.length*8+
+                traitHit.length*7-traitMiss.length*5+(salOK?10:0)+
+                (j._salaryHigh?Math.min(j._salaryHigh/10000,8):0);
+
+      out.push({job:j,tier:tier,why:why,gap:gap,score:score,salOK:salOK,need:need,
+                traitMiss:traitMiss});
+    });
+
+    function pick(tier){
+      return out.filter(function(o){ return o.tier===tier; })
+        .sort(function(a,b){
+          if(tier>1 && a.need!==b.need) return a.need-b.need;
+          return b.score-a.score;
+        }).slice(0,6);
+    }
+    return {t1:pick(1),t2:pick(2),t3:pick(3),skippedByShift:skippedByShift,all:out};
+  }
+
+  /* ---------- 結果 ---------- */
+  function field(label,val){
+    return val ? '<dt>'+esc(label)+'</dt><dd>'+esc(val)+'</dd>' : "";
+  }
+  function jobCard(o){
+    var j=o.job;
+    var sal=j["薪資範圍"] ? j["薪資範圍"].split("\n")[0] : "各機構差很多";
+    if(sal.length>32) sal=sal.slice(0,32)+"…";
+    return '<div class="job">'+
+      '<h3>'+esc(j["職缺名"])+'</h3>'+
+      '<p class="meta"><b>'+esc(j["班別"])+'</b>　·　'+esc(sal)+
+        (o.salOK?'　<span class="ok">到得了你要的數字</span>':'')+'</p>'+
+      (o.why.length? '<p class="why">'+esc(o.why.join("；"))+'</p>':'')+
+      (o.gap.length? '<p class="gap"><b>要補的：</b>'+esc(o.gap.join("；"))+'</p>':'')+
+      (o.traitMiss.length? '<p class="gap"><b>要想一下：</b>這份工作偏「'+esc(o.traitMiss.join("、"))+
+        '」，跟你選的不太一樣。不代表做不來，但上工後可能比較耗神。</p>':'')+
+      '<button class="more" type="button" aria-expanded="false">看完整資料 ↓</button>'+
+      '<div class="detail"><dl>'+
+        field("實際在做什麼",j["工作內容"])+
+        field("要考什麼證照",j["要考取哪些證照"])+
+        field("報考／應徵資格",j["證照考試資格"])+
+        field("怎麼報考",j["如何報考"])+
+        field("需要的能力",j["所需能力"])+
+        field("會用到的專業技能",j["專業技能"])+
+        field("做得順的人通常是",j["適合特質"])+
+        field("適合什麼樣的價值觀",j["適合價值觀"])+
+        field("壓力型態",j["壓力型態"])+
+        field("好處",j["優點"])+
+        field("會遇到的挑戰",j["會遇到的挑戰"])+
+        field("往後能走到哪",j["未來職涯發展"])+
+        field("學歷有沒有影響",j["學歷影響"])+
+        field("要不要回訓",j["回訓資訊"])+
+        field("評鑑與督考",j["評鑑督考"])+
+        field("主管機關",j["主管機關"])+
+      '</dl></div>'+
+    '</div>';
+  }
+  function tierBlock(cls,title,sub,list,emptyMsg){
+    if(!list.length){
+      return '<section class="tier '+cls+'"><h2>'+title+'</h2>'+
+             '<p class="empty">'+emptyMsg+'</p></section>';
+    }
+    return '<section class="tier '+cls+'"><h2>'+title+'</h2>'+
+           '<p class="sub">'+sub+'</p>'+list.map(jobCard).join("")+'</section>';
+  }
+
+  // 把五題選擇講回給對方聽，讓他知道系統怎麼理解他
+  function profileText(){
+    var said=[];
+    TRAITS.forEach(function(t){
+      var p=state.traits[t.k]; if(p) said.push(t[p].label);
+    });
+    if(!said.length) return "";
+    var skills=state.skills.map(function(k){
+      var s=""; SKILLS.forEach(function(x){ if(x.k===k) s=x.label; }); return s;
+    }).filter(Boolean);
+    return '<div class="profile"><h2>我這樣理解你</h2><p>你說你比較適合'+
+      esc(said.join("、"))+'。'+
+      (skills.length? '做起來順的是'+esc(skills.join("、"))+'。':'')+
+      '下面的排序就是照這個來的。如果覺得哪裡不像你，回去改一改再算一次。</p></div>';
+  }
+
+  function render(r){
+    var um=userMonths();
+    var lead = um===0 ? "還沒進臨床的你" : "臨床 "+yearText(um)+"的你";
+
+    card.innerHTML=
+      '<div style="text-align:center">'+
+        '<div class="kicker">你的配對結果</div>'+
+        '<h2 style="font-family:var(--serif);font-size:22px;font-weight:600;margin:6px 0 4px">'+
+          esc(lead)+'，對得上這幾扇門</h2>'+
+        '<p class="sub" style="margin:0">從 '+window.JOBS.length+' 種正常班職缺裡篩出來的</p>'+
+      '</div>'+
+
+      profileText()+
+
+      tierBlock("t-open","現在就能推開的門",
+        "年資、班別都對得上，履歷可以直接投",
+        r.t1,
+        "照你目前填的條件，暫時沒有完全對上的。回去把班別多勾幾個試試。也可以先看下面那一區，那些通常補一塊就能開。")+
+
+      tierBlock("t-ajar","再補一塊就能開的門",
+        "差的東西寫在每一則的橘色框裡，補完就能投",
+        r.t2,
+        "沒有落在這一層的職缺。")+
+
+      tierBlock("t-closed","還沒到的門",
+        "現在投多半會被刷掉，但值得先知道路長什麼樣子",
+        r.t3,
+        "沒有落在這一層的職缺。")+
+
+      (r.skippedByShift ? '<div class="note" style="background:var(--sage-tint)"><b>還有 '+r.skippedByShift+' 個職缺沒算進來。</b>它們的班別是你這次沒勾的（像外勤、接案、夜診假日）。巡迴健檢、特約職護這些都在裡面，想看的話回去多勾幾個班別再算一次。</div>':'')+
+
+      '<div class="note"><b>先講清楚：</b>上面是「你的條件符合這些職種的門檻」，不是「你家附近現在有這個缺」。真的要投之前，還是要去人力銀行查當地有沒有在徵，薪水也以實際公告為準。</div>'+
+
+      '<div class="cta">'+
+        '<h2>這份給你帶走</h2>'+
+        '<p>這裡列的是「條件對得上」的門。哪一扇真的適合你，還要看你的科別經驗、家庭狀況、和你真正想離開的原因。<br>諮詢的時候我們一起看。</p>'+
+        '<a class="btn" href="'+LINE+'" target="_blank" rel="noopener">加 LINE 跟霏霏聊聊</a>'+
+        '<a class="btn ghost" href="'+PRICING+'">看一對一諮詢</a>'+
+        '<p style="margin:14px 0 0;font-size:14px">想先自己讀 → <a class="ilink" href="'+MAP+'">40+ 種護理師轉職地圖</a></p>'+
+      '</div>'+
+
+      '<button class="again" id="again">重新填一次</button>';
+
+    document.getElementById("again").onclick=function(){
+      form(); window.scrollTo({top:0,behavior:"smooth"});
+    };
+  }
+
+  card.addEventListener("click",function(e){
+    var b=e.target.closest(".more"); if(!b) return;
+    var open=b.nextElementSibling.classList.toggle("open");
+    b.setAttribute("aria-expanded", String(open));
+    b.textContent = open ? "收起來 ↑" : "看完整資料 ↓";
+  });
+
+  form();
+})();
+</script>
+</body>
+</html>
