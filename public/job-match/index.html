@@ -110,7 +110,7 @@
   var MAP="/posts/nursing-normal-shift-career-map/";
 
   var card=document.getElementById("card");
-  var state={years:"",months:"",edu:"",shifts:[],salary:"",avoid:[],value:[]};
+  var state={years:"",months:"",edu:"",certs:[],shifts:[],salary:"",avoid:[],value:[]};
 
   var SHIFTS=[
     {k:"純白班",label:"純白班就好"},
@@ -138,6 +138,18 @@
     {k:"傳承",label:"教學傳承"},
     {k:"家庭",label:"顧得到家"}
   ];
+  var CERTS=[
+    {k:"健檢",label:"勞工體格及健康檢查護理人員訓練",keys:["勞工體格","體格與健康檢查","體格及健康檢查"]},
+    {k:"職護",label:"勞工健康服務護理人員訓練（52 小時）",keys:["勞工健康服務","52 小時","52小時"]},
+    {k:"長照",label:"長照 Level 課程",keys:["長照","照顧服務員","單一級"]},
+    {k:"個管",label:"個案管理人員培訓",keys:["個案管理","個管"]},
+    {k:"CDE",label:"糖尿病衛教師 CDE",keys:["CDE","糖尿病衛教"]},
+    {k:"GCP",label:"GCP 臨床試驗訓練",keys:["GCP","臨床試驗"]},
+    {k:"泌乳",label:"泌乳顧問 IBCLC",keys:["IBCLC","泌乳"]},
+    {k:"保母",label:"保母技術士",keys:["保母","托育人員"]},
+    {k:"分類",label:"疾病分類師證照",keys:["疾病分類"]},
+    {k:"急救",label:"ACLS／BLS",keys:["ACLS","BLS"]}
+  ];
   var EDUS=["專科／五專","二技","大學","碩士以上"];
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -156,6 +168,12 @@
       '<fieldset><legend>學歷</legend>'+
       '<div class="row" id="edu">'+EDUS.map(function(e){
         return '<button type="button" class="chip" data-v="'+esc(e)+'" aria-pressed="'+(state.edu===e)+'">'+esc(e)+'</button>';
+      }).join("")+'</div></fieldset>'+
+
+      '<fieldset><legend>手上已經有的證照或訓練</legend>'+
+      '<p class="sub">護理師執照就不用勾了，這裡是問額外的。沒有就跳過</p>'+
+      '<div class="row" id="cert">'+CERTS.map(function(c){
+        return '<button type="button" class="chip" data-v="'+c.k+'" aria-pressed="'+(state.certs.indexOf(c.k)>=0)+'">'+esc(c.label)+'</button>';
       }).join("")+'</div></fieldset>'+
 
       '<fieldset><legend>你能接受的班別</legend>'+
@@ -183,6 +201,7 @@
       '<button class="btn block" id="go">看看我能推開哪幾扇</button>';
 
     bindSingle("edu","edu");
+    bindMulti("cert","certs");
     bindMulti("shift","shifts");
     bindMulti("avoid","avoid");
     bindMulti("value","value",3);
@@ -254,8 +273,9 @@
     var wantSal=parseInt(state.salary,10)||0;
     var out=[];
 
+    var skippedByShift=0;
     window.JOBS.forEach(function(j){
-      if(state.shifts.length && state.shifts.indexOf(j["班別"])<0) return;
+      if(state.shifts.length && state.shifts.indexOf(j["班別"])<0){ skippedByShift++; return; }
 
       var killed=false;
       state.avoid.forEach(function(a){
@@ -268,16 +288,17 @@
       });
       if(killed) return;
 
-      var mm=j._minMonths, why=[], gap=[], tier;
+      var mm=j._minMonths, why=[], gap=[], tier, need=0;
 
       if(mm===0){
         tier=1; why.push("這條路不看年資，新手就能投");
       }else if(mm!==null && mm<=um){
         tier=1; why.push("年資門檻你已經到了（這個職種通常要 "+yearText(mm)+"）");
       }else if(mm===null){
-        tier=2; gap.push("這個職種沒有寫死年資門檻，看機構自己怎麼收，值得直接問問看");
+        tier=2; need=13;   // 門檻不明，排在「差一年以內」的後面
+        gap.push("這個職種沒有寫死年資門檻，看機構自己怎麼收，值得直接問問看");
       }else{
-        var need=mm-um;
+        need=mm-um;
         tier = need<=24 ? 2 : 3;
         gap.push("還差 "+yearText(need)+"的臨床年資（這個職種通常要 "+yearText(mm)+"）");
       }
@@ -302,17 +323,32 @@
       });
       if(hit.length) why.push("跟你在意的「"+hit.join("、")+"」對得上");
 
-      var score=(tier===1?100:tier===2?50:10)+hit.length*6+(salOK?10:0)+
+      var certHit=[];
+      state.certs.forEach(function(ck){
+        var c=null;
+        CERTS.forEach(function(x){ if(x.k===ck) c=x; });
+        if(!c) return;
+        var blob=j["要考取哪些證照"]+j["證照考試資格"];
+        c.keys.forEach(function(k){
+          if(blob.indexOf(k)>=0 && certHit.indexOf(c.label)<0) certHit.push(c.label);
+        });
+      });
+      if(certHit.length) why.push("你手上的「"+certHit.join("、")+"」正好是這條路要的");
+
+      var score=hit.length*6+certHit.length*12+(salOK?10:0)+
                 (j._salaryHigh?Math.min(j._salaryHigh/10000,8):0);
-      out.push({job:j,tier:tier,why:why,gap:gap,score:score,salOK:salOK});
+      out.push({job:j,tier:tier,why:why,gap:gap,score:score,salOK:salOK,need:need});
     });
 
-    out.sort(function(a,b){return b.score-a.score;});
-    return {
-      t1:out.filter(function(o){return o.tier===1;}).slice(0,5),
-      t2:out.filter(function(o){return o.tier===2;}).slice(0,5),
-      t3:out.filter(function(o){return o.tier===3;}).slice(0,5)
-    };
+    function pick(tier){
+      return out.filter(function(o){ return o.tier===tier; })
+        .sort(function(a,b){
+          // 要補的職缺：差越少排越前面，差一樣多才比分數
+          if(tier>1 && a.need!==b.need) return a.need-b.need;
+          return b.score-a.score;
+        }).slice(0,5);
+    }
+    return {t1:pick(1),t2:pick(2),t3:pick(3),skippedByShift:skippedByShift};
   }
 
   /* ---------- 結果 ---------- */
@@ -373,6 +409,8 @@
         "現在投多半會被刷掉，但值得先知道路長什麼樣子",
         r.t3,
         "沒有落在這一層的職缺。")+
+
+      (r.skippedByShift ? '<div class="note" style="background:var(--sage-tint)"><b>還有 '+r.skippedByShift+' 個職缺沒算進來。</b>它們的班別是你這次沒勾的（像外勤、接案、夜診假日）。巡迴健檢、特約職護這些都在裡面，想看的話回去多勾幾個班別再算一次。</div>':'')+
 
       '<div class="note"><b>先講清楚：</b>上面是「你的條件符合這些職種的門檻」，不是「你家附近現在有這個缺」。真的要投之前，還是要去人力銀行查當地有沒有在徵，薪水也以實際公告為準。</div>'+
 
