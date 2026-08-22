@@ -281,10 +281,14 @@ footer{max-width:1240px;margin:0 auto;padding:2.5rem 1.1rem 3rem;
     <div class="row">
       <button id="copy">複製成文字</button>
       <button id="save">存成檔案</button>
+      <button id="load">開啟舊紀錄</button>
+      <input id="loadFile" type="file" accept=".txt,text/plain" hidden>
       <span class="done" id="done" role="status"></span>
     </div>
     <p class="privacy">代號和選出來的牌都只留在這台電腦上，不會送到網路上，關掉分頁就沒了。
-      要留紀錄請按「存成檔案」。建議填代號而不是全名。</p>
+      要留紀錄請按「存成檔案」，存出來是一個文字檔（.txt），記事本、備忘錄、Word 都打得開，
+      手機也看得到。下次複談時按「開啟舊紀錄」選那個檔，上次的牌就會回到桌上。
+      建議填代號而不是全名。</p>
   </section>
 
   <p class="memo">
@@ -592,6 +596,79 @@ document.getElementById("save").onclick = function(){
   d.textContent = "存好了：" + name;
   setTimeout(function(){ d.textContent = ""; }, 3600);
 };
+
+/* 把存出去的文字檔讀回來 —— 複談時要看得到上次選了什麼 */
+document.getElementById("load").onclick = function(){
+  document.getElementById("loadFile").click();
+};
+document.getElementById("loadFile").onchange = function(e){
+  var file = e.target.files && e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){ restore(String(reader.result)); };
+  reader.readAsText(file, "utf-8");
+  e.target.value = "";     /* 同一個檔可以再選一次 */
+};
+
+function restore(text){
+  var lines = text.split(/\r?\n/).map(function(x){ return x.trim(); }).filter(Boolean);
+  var msg = document.getElementById("done");
+
+  /* 1. 認出是哪一副牌 */
+  var deckLine = lines.find(function(x){ return x.indexOf("【") === 0; });
+  var key = null;
+  if (deckLine){
+    var dname = deckLine.replace(/[【】]/g, "");
+    Object.keys(DECKS).forEach(function(k){ if (DECKS[k].name === dname) key = k; });
+  }
+  if (!key){
+    msg.textContent = "這個檔看不出是哪一副牌，沒有讀進來";
+    return;
+  }
+  st.deck = key;
+  document.getElementById("deck").value = key;
+  deal();
+
+  /* 2. 牌名 → 哪一張、哪一面 */
+  var byName = {};
+  st.cards.forEach(function(c){
+    byName[label(c, "a")] = {id:c.id, side:"a"};
+    byName[label(c, "b")] = {id:c.id, side:"b"};
+  });
+  function place(names, into){
+    names.split("、").forEach(function(n){
+      var hit = byName[n.trim()];
+      if (!hit) return;
+      st.cards.forEach(function(c){
+        if (c.id !== hit.id) return;
+        c.side = hit.side; c.down = false;
+        if (into === "hand"){ c.held = true; } else { c.tray = into; }
+      });
+    });
+  }
+
+  /* 3. 抬頭的日期與代號 */
+  var head = lines[0].indexOf("｜") > -1 ? lines[0].split("｜") : null;
+  if (head){
+    if (/^\d{4}-\d{2}-\d{2}$/.test(head[0])) document.getElementById("when").value = head[0];
+    document.getElementById("who").value = head.slice(1).join("｜");
+  }
+
+  /* 4. 托盤與手上的牌 */
+  var ti = 0;
+  lines.forEach(function(line){
+    var cut = line.indexOf("：");
+    if (cut < 1) return;
+    var name = line.slice(0, cut), body = line.slice(cut + 1);
+    if (body === "—") { if (name !== "手上還拿著") { if (st.trays[ti]) st.trays[ti].name = name; ti++; } return; }
+    if (name === "手上還拿著"){ place(body, "hand"); return; }
+    if (st.trays[ti]){ st.trays[ti].name = name; place(body, ti); ti++; }
+  });
+
+  paint();
+  msg.textContent = "讀進來了：" + (document.getElementById("who").value || "這筆紀錄");
+  setTimeout(function(){ msg.textContent = ""; }, 3600);
+}
 
 document.getElementById("copy").onclick = function(){
   var txt = document.getElementById("tally").textContent;
