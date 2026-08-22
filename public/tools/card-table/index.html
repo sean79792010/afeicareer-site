@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>牌卡桌 — 空殼版</title>
+<style>
+/* ───────────────────────────────────────────────
+   設計方向:這不是一個網頁工具,是一張鋪了絨布的談話桌。
+   深墨綠桌布讓象牙色的牌跳出來 —— 在 Google Meet 壓過的
+   畫面裡,高對比才看得清楚。大面積不用漸層,避免視訊色帶。
+   ─────────────────────────────────────────────── */
+:root{
+  --felt:#23342f;        /* 桌布 */
+  --felt-dark:#1a2723;   /* 桌緣 */
+  --card:#fffdf7;        /* 牌面 象牙 */
+  --card-b:#f6efe2;      /* 牌背面(說明面) */
+  --ink:#22201c;
+  --ink-soft:#6f6a61;
+  --brass:#c8a35e;       /* 黃銅:桌邊、拿起來的環 */
+  --chalk:#e8e3d7;       /* 桌布上的字 */
+  --serif:"Noto Serif TC","Songti TC","Source Han Serif TC",
+          "MS Mincho",Georgia,serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  /* 四級字階,每級 ~1.25 倍 —— 視訊壓縮下層級要一眼分得出來 */
+  --t-xs:.70rem; --t-sm:.875rem; --t-md:1.09rem; --t-lg:1.40rem;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--felt);color:var(--chalk);
+  font-family:var(--sans);font-size:var(--t-md);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── 桌緣:工具列 ─────────────────────────── */
+.edge{
+  position:sticky;top:0;z-index:30;
+  background:var(--felt-dark);
+  border-bottom:1px solid var(--brass);
+  padding:.65rem 1.1rem;
+}
+.edge-in{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  max-width:1240px;margin:0 auto}
+.mark{font-family:var(--serif);font-size:var(--t-lg);letter-spacing:.06em;
+  margin-right:.9rem;color:var(--card)}
+.mark em{display:block;font:400 var(--t-xs)/1.4 var(--mono);color:var(--brass);
+  font-style:normal;letter-spacing:.14em}
+.edge select,.edge button{
+  font:inherit;font-size:var(--t-sm);
+  color:var(--chalk);background:transparent;
+  border:1px solid rgba(232,227,215,.28);border-radius:2px;
+  padding:.34rem .68rem;cursor:pointer;
+}
+.edge select{color:var(--chalk)}
+.edge select option{background:var(--felt-dark);color:var(--chalk)}
+.edge button:hover{border-color:var(--brass);color:#fff}
+.edge button[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);
+  color:var(--felt-dark);font-weight:700}
+.push{flex:1}
+.edge .sizer{display:inline-flex}
+.edge .sizer button{border-radius:0}
+.edge .sizer button:first-child{border-radius:2px 0 0 2px}
+.edge .sizer button:last-child{border-radius:0 2px 2px 0;border-left:none}
+
+/* ── 桌面 ─────────────────────────────────── */
+main{max-width:1240px;margin:0 auto;padding:1.1rem 1.1rem 4rem}
+.say{font-size:var(--t-sm);color:rgba(232,227,215,.72);margin:.1rem 0 1.2rem;
+  max-width:56ch}
+
+.felt{
+  display:grid;gap:.85rem;
+  grid-template-columns:repeat(auto-fill,minmax(var(--w,148px),1fr));
+}
+
+/* ── 牌 ───────────────────────────────────────
+   簽名動作:拿起來。牌攤在桌上時各有 ±1° 的微偏,
+   像真的用手撒開的;一旦被拿起來就擺正、浮高、
+   套上一圈黃銅 —— 整桌只有被認真看待的那幾張是正的。
+   ─────────────────────────────────────────── */
+.slot{perspective:1100px}
+.pc{
+  position:relative;width:100%;aspect-ratio:5/8;
+  border:none;padding:0;background:none;cursor:pointer;
+  transform:rotate(var(--tilt,0deg));
+  transition:transform .16s ease;
+  display:block;
+}
+.pc .body{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .34s cubic-bezier(.4,.1,.2,1);
+}
+.pc[data-side="b"] .body{transform:rotateY(180deg)}
+.pc .face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:5px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.35rem;padding:.7rem;text-align:center;
+  box-shadow:0 2px 5px rgba(0,0,0,.35);
+}
+.pc .front{background:var(--card);color:var(--ink)}
+.pc .back {background:var(--card-b);color:var(--ink);transform:rotateY(180deg)}
+.pc .down {background:var(--felt-dark);color:var(--brass);
+  border:1px solid rgba(200,163,94,.5);
+  background-image:repeating-linear-gradient(135deg,
+    rgba(200,163,94,.13) 0 6px, transparent 6px 12px)}
+.pc .t{font-family:var(--serif);font-size:var(--t-lg);font-weight:700;line-height:1.25}
+.pc .s{font-size:var(--t-sm);color:var(--ink-soft)}
+.pc .no{position:absolute;top:.4rem;left:.5rem;
+  font:400 var(--t-xs)/1 var(--mono);color:var(--ink-soft);letter-spacing:.05em}
+.pc .down .t{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.22em;font-weight:400}
+
+.pc:hover{transform:rotate(var(--tilt,0deg)) translateY(-4px)}
+.pc[data-held="1"]{transform:rotate(0deg) translateY(-14px) scale(1.045)}
+.pc[data-held="1"] .face{
+  box-shadow:0 16px 26px rgba(0,0,0,.5);
+  outline:3px solid var(--brass);outline-offset:2px;
+}
+.pc:focus-visible{outline:3px solid var(--brass);outline-offset:5px;border-radius:6px}
+
+/* 翻面把手 */
+.turn{
+  position:absolute;right:.3rem;bottom:.3rem;z-index:2;
+  opacity:0;transition:opacity .14s ease;
+  font:400 var(--t-xs)/1 var(--mono);letter-spacing:.06em;
+  color:var(--ink-soft);background:rgba(255,255,255,.82);
+  border:1px solid rgba(0,0,0,.14);border-radius:2px;
+  padding:.24rem .4rem;cursor:pointer;
+}
+.turn:hover{color:var(--ink);border-color:var(--ink-soft)}
+.slot:hover .turn,.slot:focus-within .turn,
+.slot:has(.pc[data-held="1"]) .turn{opacity:1}
+@media (hover:none){.turn{opacity:1}}
+
+/* ── 托盤(分堆) ──────────────────────────── */
+.trays{display:grid;gap:.9rem;margin-top:2.2rem;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.tray{border:1px solid rgba(232,227,215,.22);border-radius:3px;
+  background:rgba(0,0,0,.14);padding:.8rem .85rem 1rem}
+.tray.over{border-color:var(--brass);background:rgba(200,163,94,.1)}
+.tray-name{display:block;width:100%;font:700 var(--t-lg)/1.4 var(--serif);
+  color:var(--card);background:transparent;
+  border:none;border-bottom:1px dotted rgba(232,227,215,.35);
+  padding:0 0 .3rem;margin-bottom:.6rem}
+.tray-name:focus{outline:none;border-bottom-color:var(--brass)}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;min-height:2.1rem}
+.chip{display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--card);color:var(--ink);border-radius:2px;
+  padding:.22rem .3rem .22rem .55rem;font-size:var(--t-sm)}
+.chip .n{font-family:var(--mono);font-size:var(--t-xs);color:var(--ink-soft)}
+.chip button{border:none;background:none;color:var(--ink-soft);
+  cursor:pointer;font-size:1rem;line-height:1;padding:0 .15rem}
+.chip button:hover{color:#a3402c}
+.tray .none{color:rgba(232,227,215,.5);font-size:var(--t-sm)}
+.tray .put{margin-top:.75rem;width:100%;font:inherit;font-size:var(--t-sm);
+  color:var(--chalk);background:transparent;cursor:pointer;
+  border:1px dashed rgba(232,227,215,.3);border-radius:2px;padding:.4rem}
+.tray .put:hover{border-color:var(--brass);color:#fff}
+.tray .put[disabled]{opacity:.35;cursor:default}
+
+/* ── 收尾 ─────────────────────────────────── */
+.tally{margin-top:2.2rem;border-top:1px solid rgba(232,227,215,.22);padding-top:1.1rem}
+.tally h2{font:700 var(--t-lg)/1.4 var(--serif);margin:0 0 .6rem;color:var(--card)}
+.tally pre{margin:0;white-space:pre-wrap;font-family:var(--sans);font-size:var(--t-sm);
+  color:rgba(232,227,215,.9);line-height:1.9}
+.tally .row{margin-top:.8rem;display:flex;gap:.6rem;align-items:center}
+.tally button{font:inherit;font-size:var(--t-sm);color:var(--chalk);background:transparent;
+  border:1px solid rgba(232,227,215,.28);border-radius:2px;padding:.36rem .7rem;cursor:pointer}
+.tally button:hover{border-color:var(--brass);color:#fff}
+.done{color:var(--brass);font-size:var(--t-sm)}
+
+.memo{margin-top:2rem;border-left:2px solid var(--brass);padding:.15rem 0 .15rem .9rem;
+  font-size:var(--t-sm);color:rgba(232,227,215,.78);max-width:64ch}
+.memo b{color:var(--card)}
+footer{max-width:1240px;margin:0 auto;padding:2.5rem 1.1rem 3rem;
+  font-size:var(--t-xs);color:rgba(232,227,215,.45)}
+
+@media (max-width:520px){
+  :root{--t-md:1rem;--t-lg:1.25rem}
+  .mark{margin-right:.4rem}
+  .felt{grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .pc,.pc .body,.turn{transition:none}
+  .pc:hover,.pc[data-held="1"]{transform:rotate(0deg)}
+}
+</style>
+</head>
+<body>
+
+<div class="edge">
+  <div class="edge-in">
+    <span class="mark">牌卡桌<em>空殼版 · 牌面是假的</em></span>
+
+    <select id="deck" aria-label="選牌組"></select>
+
+    <button id="fan"  aria-pressed="true">攤開讓他挑</button>
+    <button id="draw" aria-pressed="false">蓋著抽</button>
+
+    <span class="push"></span>
+
+    <button id="turnall">整桌翻面</button>
+    <button id="mix">重新撒開</button>
+    <span class="sizer">
+      <button id="dn" aria-label="牌變小">小</button>
+      <button id="up" aria-label="牌變大">大</button>
+    </span>
+    <button id="clear">全部收回</button>
+  </div>
+</div>
+
+<main>
+  <p class="say" id="say"></p>
+
+  <div class="felt" id="felt"></div>
+
+  <div class="trays" id="trays"></div>
+
+  <section class="tally">
+    <h2>這次談出來的</h2>
+    <pre id="tally">還沒有拿起任何一張牌。</pre>
+    <div class="row">
+      <button id="copy">複製成文字</button>
+      <span class="done" id="done" role="status"></span>
+    </div>
+  </section>
+
+  <p class="memo">
+    <b>這是空殼版。</b>牌面是假的,動作是真的。
+    點一張牌＝拿起來（牌會擺正、浮起來）· 再點一次＝放回去 ·
+    點牌右下角的「翻」＝看另一面 · 拿起來之後放進下面的托盤 ·
+    托盤的名字可以直接改字。<br>
+    真的牌面之後會換上去,並照職游與 puni 的規定標示版權。
+  </p>
+</main>
+
+<footer>霏霏 護理職涯諮詢｜線上諮詢用的內部工具</footer>
+
+<script>
+/* 假牌組:正式版換成掃描好的真牌 */
+var DECKS = {
+  zy:  {name:"職游新卡（假的 40 張）", n:40, a:"職能", b:"說明"},
+  puni:{name:"puni 牌卡（假的 32 張）", n:32, a:"圖像", b:"提問"},
+  val: {name:"價值觀卡（假的 24 張）",  n:24, a:"價值", b:"解釋"}
+};
+
+var st = {
+  deck:"zy", mode:"fan", w:148,
+  cards:[],
+  trays:[{name:"很像我"},{name:"說不上來"},{name:"不是我"}]
+};
+
+function deal(){
+  var d = DECKS[st.deck], a = [];
+  for (var i=1;i<=d.n;i++){
+    a.push({id:i, side:"a", held:false, tray:null,
+            down:(st.mode==="draw"),
+            tilt:(Math.random()*4.4-2.2).toFixed(2)});
+  }
+  st.cards = a;
+  paint();
+}
+
+function mix(){
+  for (var i=st.cards.length-1;i>0;i--){
+    var j = Math.floor(Math.random()*(i+1)), t = st.cards[i];
+    st.cards[i] = st.cards[j]; st.cards[j] = t;
+  }
+  st.cards.forEach(function(c){ c.tilt = (Math.random()*4.4-2.2).toFixed(2); });
+  paint();
+}
+
+function label(c, side){
+  var d = DECKS[st.deck];
+  return (side === "a" ? d.a : d.b) + " " + c.id;
+}
+
+function paint(){
+  var felt = document.getElementById("felt");
+  felt.innerHTML = "";
+  st.cards.forEach(function(c){
+    if (c.tray !== null) return;
+
+    var slot = document.createElement("div");
+    slot.className = "slot";
+
+    var btn = document.createElement("button");
+    btn.className = "pc";
+    btn.style.setProperty("--tilt", c.tilt + "deg");
+    btn.dataset.side = c.side;
+    btn.dataset.held = c.held ? "1" : "0";
+    btn.draggable = true;
+    btn.setAttribute("aria-pressed", c.held ? "true" : "false");
+    btn.setAttribute("aria-label",
+      c.down ? ("第 " + c.id + " 張，蓋著") : (label(c, c.side) + (c.held ? "，已拿起" : "")));
+
+    if (c.down){
+      btn.innerHTML =
+        '<div class="body"><div class="face down">' +
+          '<div class="t">翻 開</div><div class="no">' + c.id + '</div>' +
+        '</div></div>';
+    } else {
+      btn.innerHTML =
+        '<div class="body">' +
+          '<div class="face front"><div class="t">' + label(c,"a") + '</div>' +
+            '<div class="s">正面</div><div class="no">' + c.id + '</div></div>' +
+          '<div class="face back"><div class="t">' + label(c,"b") + '</div>' +
+            '<div class="s">另一面</div><div class="no">' + c.id + '</div></div>' +
+        '</div>';
+    }
+
+    btn.onclick = function(){
+      if (c.down){ c.down = false; }      /* 蓋著的:第一下先翻開 */
+      else { c.held = !c.held; }
+      paint();
+    };
+    btn.ondragstart = function(e){ e.dataTransfer.setData("text/plain", String(c.id)); };
+
+    slot.appendChild(btn);
+
+    if (!c.down){
+      var turn = document.createElement("button");
+      turn.className = "turn";
+      turn.textContent = "翻";
+      turn.title = "看另一面";
+      turn.setAttribute("aria-label", "翻到另一面，第 " + c.id + " 張");
+      turn.onclick = function(e){
+        e.stopPropagation();
+        c.side = (c.side === "a" ? "b" : "a");
+        paint();
+      };
+      slot.appendChild(turn);
+      slot.style.position = "relative";
+    }
+
+    felt.appendChild(slot);
+  });
+
+  paintTrays();
+  paintTally();
+}
+
+function paintTrays(){
+  var wrap = document.getElementById("trays");
+  var heldCount = st.cards.filter(function(c){ return c.held && c.tray === null; }).length;
+  wrap.innerHTML = "";
+
+  st.trays.forEach(function(tray, ti){
+    var box = document.createElement("div");
+    box.className = "tray";
+
+    var name = document.createElement("input");
+    name.className = "tray-name";
+    name.value = tray.name;
+    name.setAttribute("aria-label", "第 " + (ti+1) + " 個托盤的名字");
+    name.oninput = function(){ tray.name = name.value; paintTally(); };
+    box.appendChild(name);
+
+    var chips = document.createElement("div");
+    chips.className = "chips";
+    var mine = st.cards.filter(function(c){ return c.tray === ti; });
+    if (!mine.length){
+      chips.innerHTML = '<span class="none">還是空的。把牌拖進來，或先拿起來再按下面。</span>';
+    }
+    mine.forEach(function(c){
+      var chip = document.createElement("span");
+      chip.className = "chip";
+      chip.innerHTML = '<span>' + label(c, c.side) + '</span>';
+      var x = document.createElement("button");
+      x.textContent = "×";
+      x.setAttribute("aria-label", "把 " + label(c, c.side) + " 放回桌上");
+      x.onclick = function(){ c.tray = null; paint(); };
+      chip.appendChild(x);
+      chips.appendChild(chip);
+    });
+    box.appendChild(chips);
+
+    var put = document.createElement("button");
+    put.className = "put";
+    put.textContent = heldCount
+      ? ("把拿起來的 " + heldCount + " 張放進「" + tray.name + "」")
+      : "先拿起幾張牌";
+    put.disabled = !heldCount;
+    put.onclick = function(){
+      st.cards.forEach(function(c){
+        if (c.held && c.tray === null){ c.tray = ti; c.held = false; }
+      });
+      paint();
+    };
+    box.appendChild(put);
+
+    box.ondragover  = function(e){ e.preventDefault(); box.classList.add("over"); };
+    box.ondragleave = function(){ box.classList.remove("over"); };
+    box.ondrop = function(e){
+      e.preventDefault(); box.classList.remove("over");
+      var id = parseInt(e.dataTransfer.getData("text/plain"), 10);
+      st.cards.forEach(function(c){
+        if (c.id === id){ c.tray = ti; c.held = false; c.down = false; }
+      });
+      paint();
+    };
+
+    wrap.appendChild(box);
+  });
+}
+
+function paintTally(){
+  var d = DECKS[st.deck], lines = ["【" + d.name + "】"], any = false;
+
+  st.trays.forEach(function(tray, ti){
+    var mine = st.cards.filter(function(c){ return c.tray === ti; });
+    if (mine.length) any = true;
+    lines.push(tray.name + "：" + (mine.length
+      ? mine.map(function(c){ return label(c, c.side); }).join("、")
+      : "—"));
+  });
+
+  var held = st.cards.filter(function(c){ return c.held && c.tray === null; });
+  if (held.length){
+    any = true;
+    lines.push("手上還拿著：" + held.map(function(c){ return label(c, c.side); }).join("、"));
+  }
+
+  document.getElementById("tally").textContent =
+    any ? lines.join("\n") : "還沒有拿起任何一張牌。";
+}
+
+function setMode(m){
+  st.mode = m;
+  var fan = document.getElementById("fan"), draw = document.getElementById("draw");
+  fan.setAttribute("aria-pressed",  m === "fan"  ? "true" : "false");
+  draw.setAttribute("aria-pressed", m === "draw" ? "true" : "false");
+  document.getElementById("say").textContent = (m === "fan")
+    ? "所有牌正面朝上攤在桌上。他說哪一張，你就點哪一張，牌會擺正、浮起來 —— 整桌只有被拿起來的牌是正的。"
+    : "所有牌蓋著。點一下翻開，再點一次拿起來。適合想留一點未知感的時候。";
+  deal();
+}
+
+/* 桌緣按鈕 */
+var sel = document.getElementById("deck");
+Object.keys(DECKS).forEach(function(k){
+  var o = document.createElement("option");
+  o.value = k; o.textContent = DECKS[k].name;
+  sel.appendChild(o);
+});
+sel.onchange = function(){ st.deck = sel.value; deal(); };
+
+document.getElementById("fan").onclick  = function(){ setMode("fan"); };
+document.getElementById("draw").onclick = function(){ setMode("draw"); };
+document.getElementById("mix").onclick  = mix;
+document.getElementById("clear").onclick = function(){ deal(); };
+document.getElementById("turnall").onclick = function(){
+  var toBack = st.cards.some(function(c){ return c.side === "a"; });
+  st.cards.forEach(function(c){ c.side = toBack ? "b" : "a"; c.down = false; });
+  paint();
+};
+function size(px){
+  st.w = Math.max(96, Math.min(260, px));
+  document.getElementById("felt").style.setProperty("--w", st.w + "px");
+}
+document.getElementById("up").onclick = function(){ size(st.w + 26); };
+document.getElementById("dn").onclick = function(){ size(st.w - 26); };
+
+document.getElementById("copy").onclick = function(){
+  var txt = document.getElementById("tally").textContent;
+  navigator.clipboard.writeText(txt).then(function(){
+    var d = document.getElementById("done");
+    d.textContent = "複製好了，可以貼進諮詢紀錄";
+    setTimeout(function(){ d.textContent = ""; }, 2600);
+  });
+};
+
+size(st.w);
+setMode("fan");
+</script>
+</body>
+</html>
