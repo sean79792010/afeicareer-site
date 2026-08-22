@@ -280,16 +280,14 @@ footer{max-width:1240px;margin:0 auto;padding:2.5rem 1.1rem 3rem;
     <pre id="tally">還沒有拿起任何一張牌。</pre>
     <div class="row">
       <button id="copy">複製成文字</button>
-      <button id="save">存成檔案</button>
       <button id="load">開啟舊紀錄</button>
       <input id="loadFile" type="file" accept=".txt,text/plain" hidden>
       <span class="done" id="done" role="status"></span>
     </div>
-    <p class="privacy">代號和選出來的牌都只留在這台電腦上，不會送到網路上，關掉分頁就沒了。
-      要留紀錄請按「存成檔案」，存出來是一個文字檔（.txt），記事本、備忘錄、Word 都打得開，
-      手機也看得到。下次複談時按「開啟舊紀錄」選那個檔，上次的牌就會回到桌上。
-      建議填代號而不是全名。<br>
-      要收進雲端的〈來訪者諮詢紀錄〉資料夾：按「複製成文字」貼給小霏，我幫你歸檔。</p>
+    <p class="privacy">代號和選出來的牌不會自動送到任何地方，關掉分頁就沒了。<br>
+      <b>要留紀錄</b>：按「複製成文字」貼給小霏，我存進雲端的〈來訪者諮詢紀錄〉資料夾。<br>
+      <b>複談要接續上次</b>：先去那個資料夾下載該筆 .txt，再按「開啟舊紀錄」選它，上次的牌就回到桌上。<br>
+      代號請填暱稱而不是全名。</p>
   </section>
 
   <p class="memo">
@@ -583,20 +581,6 @@ var whenBox = document.getElementById("when");
 whenBox.value = new Date().toLocaleDateString("sv-SE");   /* sv-SE 就是 YYYY-MM-DD，用電腦本機時區 */
 document.getElementById("who").oninput = paintTally;
 whenBox.onchange = paintTally;
-
-document.getElementById("save").onclick = function(){
-  var txt = document.getElementById("tally").textContent;
-  var who = (document.getElementById("who").value || "未命名").trim();
-  var when = whenBox.value || "";
-  var name = ["牌卡紀錄", who, when].filter(Boolean).join("_") + ".txt";
-  var url = URL.createObjectURL(new Blob([txt], {type:"text/plain;charset=utf-8"}));
-  var a = document.createElement("a");
-  a.href = url; a.download = name; a.click();
-  URL.revokeObjectURL(url);
-  var d = document.getElementById("done");
-  d.textContent = "存好了：" + name;
-  setTimeout(function(){ d.textContent = ""; }, 3600);
-};
 
 /* 把存出去的文字檔讀回來 —— 複談時要看得到上次選了什麼 */
 document.getElementById("load").onclick = function(){
