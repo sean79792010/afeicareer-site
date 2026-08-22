@@ -134,7 +134,13 @@
     {k:"泌乳",label:"泌乳顧問 IBCLC",keys:["IBCLC","泌乳"]},
     {k:"保母",label:"保母技術士",keys:["保母","托育人員"]},
     {k:"分類",label:"疾病分類師證照",keys:["疾病分類"]},
-    {k:"急救",label:"ACLS／BLS",keys:["ACLS","BLS"]}
+    {k:"急救",label:"ACLS／BLS",keys:["ACLS","BLS"]},
+    {k:"洗腎",label:"血液透析護理人員資格（TSN／TNNA）",keys:["血液透析","透析","洗腎"],
+     names:["腎臟照護衛教師／CKD 個案管理師（含 AKI 追蹤）"]},
+    {k:"NP",label:"專科護理師（NP）",keys:[],
+     names:["醫院個案管理師","出院準備服務護理師","傷造口護理師"]},
+    {k:"麻護",label:"麻醉護理訓練／認證",keys:[],
+     names:["植髮診所","肝膽腸胃科","腸胃鏡檢查技術員（消化內科／內視鏡室）"]}
   ];
   var EDUS=["專科／五專","二技","大學","碩士以上"];
   var SHIFTS=[
@@ -407,9 +413,11 @@
         CERTS.forEach(function(x){ if(x.k===ck) c=x; });
         if(!c) return;
         var blob=j["要考取哪些證照"]+j["證照考試資格"];
-        c.keys.forEach(function(k){
-          if(blob.indexOf(k)>=0 && certHit.indexOf(c.label)<0) certHit.push(c.label);
-        });
+        var ok=false;
+        (c.keys||[]).forEach(function(k){ if(blob.indexOf(k)>=0) ok=true; });
+        /* 職缺庫證照欄沒寫、但這張證照實務上真的用得到的職缺，用職缺名精準對應 */
+        if(!ok && c.names && c.names.indexOf(j["職缺名"])>=0) ok=true;
+        if(ok && certHit.indexOf(c.label)<0) certHit.push(c.label);
       });
       if(certHit.length) why.push("你手上的「"+certHit.join("、")+"」正好是這條路要的");
 
