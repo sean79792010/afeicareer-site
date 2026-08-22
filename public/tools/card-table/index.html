@@ -135,6 +135,36 @@ main{max-width:1240px;margin:0 auto;padding:1.1rem 1.1rem 4rem}
 .slot:has(.pc[data-held="1"]) .turn{opacity:1}
 @media (hover:none){.turn{opacity:1}}
 
+/* ── 手上的牌 ─────────────────────────────────
+   來訪者常常只有一支手機,看你分享的畫面時整桌牌會小到
+   看不清。所以拿起來的牌另外放大放在桌子上方 —— 攤開的
+   那疊只負責挑,挑出來的才是要一起看的。
+   ─────────────────────────────────────────── */
+.hand{margin:0 0 1.4rem;padding:.9rem .95rem 1rem;
+  border:1px solid var(--brass);border-radius:3px;background:rgba(200,163,94,.07)}
+.hand[hidden]{display:none}
+.hand h2{margin:0 0 .7rem;font:700 var(--t-lg)/1.3 var(--serif);color:var(--card)}
+.hand h2 span{font:400 var(--t-sm)/1.3 var(--sans);color:rgba(232,227,215,.7);
+  margin-left:.5rem}
+.hand-row{display:flex;gap:.8rem;overflow-x:auto;padding-bottom:.3rem}
+.big{flex:0 0 auto;width:152px}
+@media (max-width:640px){.big{width:min(48vw,200px)}}
+.big .sheet{aspect-ratio:5/8;border-radius:6px;background:var(--card);color:var(--ink);
+  box-shadow:0 8px 18px rgba(0,0,0,.42);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.4rem;padding:1rem;text-align:center;position:relative}
+.big .sheet.flip{background:var(--card-b)}
+.big .bt{font-family:var(--serif);font-weight:700;line-height:1.2;
+  font-size:calc(var(--t-lg) * 1.35)}
+.big .bs{font-size:var(--t-sm);color:var(--ink-soft)}
+.big .bn{position:absolute;top:.5rem;left:.6rem;
+  font:400 var(--t-xs)/1 var(--mono);color:var(--ink-soft)}
+.big .acts{display:flex;gap:.4rem;margin-top:.5rem}
+.big .acts button{flex:1;font:inherit;font-size:var(--t-sm);color:var(--chalk);
+  background:transparent;border:1px solid rgba(232,227,215,.3);border-radius:2px;
+  padding:.32rem;cursor:pointer}
+.big .acts button:hover{border-color:var(--brass);color:#fff}
+
 /* ── 托盤(分堆) ──────────────────────────── */
 .trays{display:grid;gap:.9rem;margin-top:2.2rem;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
@@ -214,6 +244,11 @@ footer{max-width:1240px;margin:0 auto;padding:2.5rem 1.1rem 3rem;
 
 <main>
   <p class="say" id="say"></p>
+
+  <section class="hand" id="hand" hidden>
+    <h2>手上的牌 <span id="handNote"></span></h2>
+    <div class="hand-row" id="handRow"></div>
+  </section>
 
   <div class="felt" id="felt"></div>
 
@@ -339,8 +374,49 @@ function paint(){
     felt.appendChild(slot);
   });
 
+  paintHand();
   paintTrays();
   paintTally();
+}
+
+/* 拿起來的牌放大另外擺一排 —— 手機端的來訪者靠這個看清楚 */
+function paintHand(){
+  var box = document.getElementById("hand");
+  var row = document.getElementById("handRow");
+  var held = st.cards.filter(function(c){ return c.held && c.tray === null; });
+
+  box.hidden = !held.length;
+  document.getElementById("handNote").textContent =
+    held.length ? "（" + held.length + " 張，放大給對方看）" : "";
+  row.innerHTML = "";
+
+  held.forEach(function(c){
+    var wrap = document.createElement("div");
+    wrap.className = "big";
+    wrap.innerHTML =
+      '<div class="sheet' + (c.side === "b" ? " flip" : "") + '">' +
+        '<div class="bt">' + label(c, c.side) + '</div>' +
+        '<div class="bs">' + (c.side === "a" ? "正面" : "另一面") + '</div>' +
+        '<div class="bn">' + c.id + '</div>' +
+      '</div>' +
+      '<div class="acts"></div>';
+
+    var acts = wrap.querySelector(".acts");
+
+    var turn = document.createElement("button");
+    turn.textContent = "翻面";
+    turn.setAttribute("aria-label", "翻到另一面，第 " + c.id + " 張");
+    turn.onclick = function(){ c.side = (c.side === "a" ? "b" : "a"); paint(); };
+    acts.appendChild(turn);
+
+    var back = document.createElement("button");
+    back.textContent = "放回去";
+    back.setAttribute("aria-label", "把第 " + c.id + " 張放回桌上");
+    back.onclick = function(){ c.held = false; paint(); };
+    acts.appendChild(back);
+
+    row.appendChild(wrap);
+  });
 }
 
 function paintTrays(){
