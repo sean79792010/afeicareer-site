@@ -4,7 +4,7 @@ description: "霏霏｜護理師暨職涯諮詢師。8 年醫學中心臨床護�
 ---
 
 <div style="display:flex;flex-wrap:wrap;gap:1.75rem;align-items:center;margin-bottom:2rem">
-  <img src="/images/fei-portrait.jpg" alt="霏霏｜護理師暨職涯諮詢師的形象照" width="900" height="1350" style="width:100%;max-width:17rem;margin:0 auto;border-radius:1rem;flex:0 0 auto" loading="eager" />
+  <img src="/images/fei-avatar.jpg" alt="霏霏｜護理師暨職涯諮詢師的形象照" width="800" height="800" style="width:100%;max-width:15rem;aspect-ratio:1/1;object-fit:cover;margin:0 auto;border-radius:9999px;flex:0 0 auto" loading="eager" />
   <div style="flex:1 1 18rem;min-width:0">
     <p style="margin-top:0">我是霏霏，一位<strong>護理師暨職涯諮詢師</strong>。</p>
     <ul style="margin-bottom:0">
