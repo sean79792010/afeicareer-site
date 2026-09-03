@@ -3,11 +3,17 @@ title: "關於霏霏"
 description: "霏霏｜護理師暨職涯諮詢師。8 年醫學中心臨床護理經驗、5 年醫院專任職護（勞工健康服務護理人員），並具職涯諮詢師資歷，陪護理人員走轉職與職涯這條路。"
 ---
 
-我是霏霏，一位**護理師暨職涯諮詢師**。
-
-- 🩺 **8 年醫學中心臨床護理經驗**（曾任醫院公職護理師）
-- 🏭 **5 年醫院職護**（勞工健康服務護理人員）
-- 🧭 **職涯諮詢師**
+<div style="display:flex;flex-wrap:wrap;gap:1.75rem;align-items:center;margin-bottom:2rem">
+  <img src="/images/fei-portrait.jpg" alt="霏霏｜護理師暨職涯諮詢師的形象照" width="900" height="1350" style="width:100%;max-width:17rem;margin:0 auto;border-radius:1rem;flex:0 0 auto" loading="eager" />
+  <div style="flex:1 1 18rem;min-width:0">
+    <p style="margin-top:0">我是霏霏，一位<strong>護理師暨職涯諮詢師</strong>。</p>
+    <ul style="margin-bottom:0">
+      <li>🩺 <strong>8 年醫學中心臨床護理經驗</strong>（曾任醫院公職護理師）</li>
+      <li>🏭 <strong>5 年醫院職護</strong>（勞工健康服務護理人員）</li>
+      <li>🧭 <strong>職涯諮詢師</strong></li>
+    </ul>
+  </div>
+</div>
 
 我曾經也是那個在病房裡，一邊拚命照顧別人、一邊把自己燃燒殆盡的護理師。
 
