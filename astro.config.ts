@@ -21,6 +21,10 @@ import config from "./astro-paper.config";
 
 export default defineConfig({
   site: config.site.url,
+  // 原本由 <ClientRouter /> 隱含啟用（prefetchAll）。移除 ClientRouter 後
+  // 預取會整個消失，每次點連結多一個 RTT，所以在這裡顯式補回。
+  // <link rel="prefetch"> 只取回文件、不執行 JS，不會觸發 Analytics beacon。
+  prefetch: { prefetchAll: true, defaultStrategy: "hover" },
   // Cloudflare Pages 會把無尾斜線的網址 308 轉到有尾斜線版本，
   // 站內連結若不帶尾斜線就會製造多餘的 redirect（GSC 會記成「頁面會重新導向」）
   trailingSlash: "always",

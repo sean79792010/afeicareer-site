@@ -181,7 +181,17 @@ const homePath = getRelativeLocaleUrl(locale, "");
   const indexLayout = (document.querySelector("#main-content") as HTMLElement)
     ?.dataset;
   const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-  if (indexLayout?.layout) {
-    sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+
+  function setBackUrl() {
+    if (indexLayout?.layout) {
+      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+    }
   }
+
+  setBackUrl();
+
+  // 同 Main.astro：bfcache 還原不重跑 module，要靠 pageshow 補寫。
+  window.addEventListener("pageshow", event => {
+    if (event.persisted) setBackUrl();
+  });
 </script>

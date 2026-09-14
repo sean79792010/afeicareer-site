@@ -29,8 +29,20 @@ const backUrl = config.features.showBackButton
 <script>
   const mainContent: HTMLElement | null =
     document.querySelector("#main-content");
-  const backUrl = mainContent?.dataset?.backurl;
-  if (backUrl) {
-    sessionStorage.setItem("backUrl", backUrl);
+
+  function setBackUrl() {
+    const backUrl = mainContent?.dataset?.backurl;
+    if (backUrl) {
+      // 帶上 search，搜尋頁還原時才不會把 ?q= 蓋掉
+      sessionStorage.setItem("backUrl", backUrl + window.location.search);
+    }
   }
+
+  setBackUrl();
+
+  // bfcache 還原不會重跑 module script，backUrl 會停在別頁的值，
+  // 害返回鈕指到錯的地方，所以要在 pageshow 補寫一次。
+  window.addEventListener("pageshow", event => {
+    if (event.persisted) setBackUrl();
+  });
 </script>
