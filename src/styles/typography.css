@@ -83,7 +83,11 @@
     }
 
     details:not(.callout) {
-      @apply text-foreground inline-block cursor-pointer select-none [&_p]:hidden [&_ul]:my-0!;
+      /* 原主題是 [&_p]:hidden(藏掉 details 內所有段落)。Fei 的收合區塊內有大量
+         段落內容,而且 markdown 的 loose list 會把每個項目也包成 <p> —— 那條規則
+         會讓整段內容在畫面上消失(2026-09-14 實測:本站長文有 13 個收合區塊、
+         共 45 段文字被藏起來)。改成只藏 summary 內的段落。 */
+      @apply text-foreground inline-block cursor-pointer select-none [&>summary_p]:hidden [&_ul]:my-0!;
     }
 
     summary {
