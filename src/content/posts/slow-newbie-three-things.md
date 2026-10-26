@@ -4,7 +4,7 @@ pubDatetime: 2026-09-22T08:00:00+08:00
 title: 動作慢就是不好的新人嗎？病房真正在看的三件事
 featured: false
 draft: false
-category: 護理轉職
+category: 臨床新人調適
 tags:
   - 臨床新人
   - 護理新人

@@ -4,7 +4,7 @@ pubDatetime: 2026-10-13T08:00:00+08:00
 title: 撐過三個月、快要上線了，還是想離職？先分清楚你怕的是什麼
 featured: false
 draft: false
-category: 護理轉職
+category: 臨床新人調適
 tags:
   - 臨床新人
   - 護理新人

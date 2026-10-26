@@ -4,7 +4,7 @@ pubDatetime: 2026-07-28T08:00:00+08:00
 title: 只有臨床經驗，職護履歷怎麼寫？用「技能翻譯法」讓對的人看見你的價值
 featured: true
 draft: false
-category: 護理轉職
+category: 履歷・求職
 tags:
   - 職護履歷
   - 職業衛生護理師

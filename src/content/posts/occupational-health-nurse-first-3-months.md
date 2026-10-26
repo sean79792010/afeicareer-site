@@ -4,7 +4,7 @@ pubDatetime: 2026-09-08T08:00:00+08:00
 title: 新手職護到職 3 個月：我當年最希望有人告訴我的事
 featured: true
 draft: false
-category: 護理轉職
+category: 新手職護陪跑
 tags:
   - 職護
   - 勞工健康服務護理人員

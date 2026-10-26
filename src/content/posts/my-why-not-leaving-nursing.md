@@ -4,7 +4,7 @@ pubDatetime: 2026-09-29T08:00:00+08:00
 title: 不是要勸你離開護理：我為什麼做護理職涯諮詢
 featured: false
 draft: false
-category: 護理轉職
+category: 職涯隨筆
 tags:
   - 護理職涯
   - 臨床新人

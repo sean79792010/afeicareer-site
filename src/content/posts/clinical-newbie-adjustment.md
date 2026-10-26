@@ -4,7 +4,7 @@ pubDatetime: 2026-09-15T08:00:00+08:00
 title: 陪你穿越調適期：臨床新人第一份工作的 3 個月藍圖
 featured: true
 draft: false
-category: 護理轉職
+category: 臨床新人調適
 tags:
   - 臨床新人
   - 護理新人
